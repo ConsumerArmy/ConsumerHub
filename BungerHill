@@ -1,35 +1,19 @@
 -- Gui to Lua
 -- Version: 3.2
+
+-- Instances:
+
 if game.CoreGui:FindFirstChild("ConsumerHubBunkerHill") then
 	print("Already Injected")
 else
 
--- Instances:
-	
-	
 
-	local Plr = game:GetService("Players").LocalPlayer
-	local Mouse = Plr:GetMouse()
-
-	Mouse.Button1Down:connect(function()
-			if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.Q) then
-				return
-			end
-			if not Mouse.Target then
-				return
-			end
-			Mouse.Target:Destroy()
-		end
-	)
-
-
-	
-	
-local ConsumerHubBunkerHill = Instance.new("ScreenGui")
+local ConsumerHubBunkerHillv12 = Instance.new("ScreenGui")
 local MAIN = Instance.new("ImageLabel")
 local Tittle = Instance.new("Frame")
 local Name = Instance.new("TextLabel")
 local PurpleBar = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
 local BunkerHillFrame = Instance.new("Frame")
 local BunkerHillMain = Instance.new("Frame")
 local Name_2 = Instance.new("TextLabel")
@@ -37,9 +21,9 @@ local PurpleBar_2 = Instance.new("Frame")
 local PurpleBar_3 = Instance.new("Frame")
 local Tptool = Instance.new("TextButton")
 local RemoveJail = Instance.new("TextButton")
-local InfAmmo = Instance.new("TextButton")
+local InfAmmoNoLegit = Instance.new("TextButton")
 local LagSwitch = Instance.new("TextButton")
-local soon = Instance.new("TextButton")
+local InfAmmoLegit = Instance.new("TextButton")
 local InfYield = Instance.new("TextButton")
 local OtherFrame = Instance.new("Frame")
 local Name_3 = Instance.new("TextLabel")
@@ -47,8 +31,9 @@ local PurpleBar_4 = Instance.new("Frame")
 local PurpleBar_5 = Instance.new("Frame")
 local NoJumpDelay = Instance.new("TextButton")
 local OfficerSaber = Instance.new("TextButton")
-local ApplyStuds = Instance.new("TextButton")
-local StudsBox = Instance.new("TextBox")
+local FullBright = Instance.new("TextButton")
+local NoFog = Instance.new("TextButton")
+local Seat = Instance.new("TextButton")
 local TpsFrame = Instance.new("Frame")
 local Name_4 = Instance.new("TextLabel")
 local PurpleBar_6 = Instance.new("Frame")
@@ -57,15 +42,31 @@ local BaDown = Instance.new("TextButton")
 local BaUp = Instance.new("TextButton")
 local CaSpawn = Instance.new("TextButton")
 local Church = Instance.new("TextButton")
+local FakeProofFrame = Instance.new("Frame")
+local Name_5 = Instance.new("TextLabel")
+local PurpleBar_8 = Instance.new("Frame")
+local PurpleBar_9 = Instance.new("Frame")
+local ApplyStuds = Instance.new("TextButton")
+local StudsBox = Instance.new("TextBox")
+local Info = Instance.new("TextLabel")
+local KeyboardFrame = Instance.new("Frame")
+local QDelete = Instance.new("TextLabel")
+local OpenClose = Instance.new("TextLabel")
+local Credits = Instance.new("TextLabel")
+local Sections = Instance.new("Frame")
+local Main = Instance.new("TextButton")
+local ActivatedBar = Instance.new("Frame")
+local Settings = Instance.new("TextButton")
+local ActivatedBar_2 = Instance.new("Frame")
 
 --Properties:
 
-ConsumerHubBunkerHill.Name = "ConsumerHubBunkerHill"
-	ConsumerHubBunkerHill.Parent = game:WaitForChild("CoreGui")
-ConsumerHubBunkerHill.DisplayOrder = 999999999
+ConsumerHubBunkerHillv12.Name = "GAHshasve1621DVseyswebscasf"
+	ConsumerHubBunkerHillv12.Parent = game:WaitForChild("CoreGui")
+ConsumerHubBunkerHillv12.DisplayOrder = 999999999
 
 MAIN.Name = "MAIN"
-MAIN.Parent = ConsumerHubBunkerHill
+MAIN.Parent = ConsumerHubBunkerHillv12
 MAIN.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 MAIN.BorderColor3 = Color3.fromRGB(84, 84, 84)
 MAIN.BorderSizePixel = 3
@@ -89,7 +90,7 @@ Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Name.BackgroundTransparency = 1.000
 Name.Size = UDim2.new(0.478181809, 0, 1.00000012, 0)
 Name.Font = Enum.Font.Nunito
-Name.Text = "ConsumerHub V1"
+Name.Text = "ConsumerHub V1.2"
 Name.TextColor3 = Color3.fromRGB(234, 234, 234)
 Name.TextScaled = true
 Name.TextSize = 14.000
@@ -101,8 +102,15 @@ PurpleBar.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
 PurpleBar.Position = UDim2.new(0, 0, 0.0606060401, 0)
 PurpleBar.Size = UDim2.new(1, 0, 0.00499999989, 0)
 
+ScrollingFrame.Parent = MAIN
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.Position = UDim2.new(0, 0, 0.149285913, 0)
+ScrollingFrame.Size = UDim2.new(0.999999821, 0, 0.850714147, 0)
+
 BunkerHillFrame.Name = "BunkerHillFrame"
-BunkerHillFrame.Parent = MAIN
+BunkerHillFrame.Parent = ScrollingFrame
 BunkerHillFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 BunkerHillFrame.BackgroundTransparency = 1.000
 BunkerHillFrame.Position = UDim2.new(0, 0, 0.0656060502, 0)
@@ -113,15 +121,15 @@ BunkerHillMain.Parent = BunkerHillFrame
 BunkerHillMain.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 BunkerHillMain.BorderColor3 = Color3.fromRGB(60, 60, 60)
 BunkerHillMain.BorderSizePixel = 0
-BunkerHillMain.Position = UDim2.new(0.0458003916, 0, 0.0819523633, 0)
-BunkerHillMain.Size = UDim2.new(0.470474303, 0, 0.760285914, 0)
+BunkerHillMain.Position = UDim2.new(0.0383929797, 0, -0.052874051, 0)
+BunkerHillMain.Size = UDim2.new(0.50010401, 0, 0.377909362, 0)
 
 Name_2.Name = "Name"
 Name_2.Parent = BunkerHillMain
 Name_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Name_2.BackgroundTransparency = 1.000
-Name_2.Position = UDim2.new(0.146858826, 0, -0.0374713205, 0)
-Name_2.Size = UDim2.new(0.722017944, 0, 0.0840348527, 0)
+Name_2.Position = UDim2.new(0.26121375, 0, -0.0374713317, 0)
+Name_2.Size = UDim2.new(0.472295493, 0, 0.0840348527, 0)
 Name_2.ZIndex = 3
 Name_2.Font = Enum.Font.Nunito
 Name_2.Text = "Bunger Hill"
@@ -167,18 +175,18 @@ RemoveJail.TextScaled = true
 RemoveJail.TextSize = 14.000
 RemoveJail.TextWrapped = true
 
-InfAmmo.Name = "InfAmmo"
-InfAmmo.Parent = BunkerHillMain
-InfAmmo.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-InfAmmo.BorderColor3 = Color3.fromRGB(86, 86, 86)
-InfAmmo.Position = UDim2.new(0.0636155382, 0, 0.351834059, 0)
-InfAmmo.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-InfAmmo.Font = Enum.Font.Nunito
-InfAmmo.Text = "Infinite Ammo"
-InfAmmo.TextColor3 = Color3.fromRGB(234, 234, 234)
-InfAmmo.TextScaled = true
-InfAmmo.TextSize = 14.000
-InfAmmo.TextWrapped = true
+InfAmmoNoLegit.Name = "InfAmmoNoLegit"
+InfAmmoNoLegit.Parent = BunkerHillMain
+InfAmmoNoLegit.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+InfAmmoNoLegit.BorderColor3 = Color3.fromRGB(86, 86, 86)
+InfAmmoNoLegit.Position = UDim2.new(0.0636155382, 0, 0.351834059, 0)
+InfAmmoNoLegit.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
+InfAmmoNoLegit.Font = Enum.Font.Nunito
+InfAmmoNoLegit.Text = "Infinite Ammo (obvious)"
+InfAmmoNoLegit.TextColor3 = Color3.fromRGB(234, 234, 234)
+InfAmmoNoLegit.TextScaled = true
+InfAmmoNoLegit.TextSize = 14.000
+InfAmmoNoLegit.TextWrapped = true
 
 LagSwitch.Name = "LagSwitch"
 LagSwitch.Parent = BunkerHillMain
@@ -193,18 +201,18 @@ LagSwitch.TextScaled = true
 LagSwitch.TextSize = 14.000
 LagSwitch.TextWrapped = true
 
-soon.Name = "soon"
-soon.Parent = BunkerHillMain
-soon.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-soon.BorderColor3 = Color3.fromRGB(86, 86, 86)
-soon.Position = UDim2.new(0.0728894174, 0, 0.815951705, 0)
-soon.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-soon.Font = Enum.Font.Nunito
-soon.Text = "Coming soon..."
-soon.TextColor3 = Color3.fromRGB(234, 234, 234)
-soon.TextScaled = true
-soon.TextSize = 14.000
-soon.TextWrapped = true
+InfAmmoLegit.Name = "InfAmmoLegit"
+InfAmmoLegit.Parent = BunkerHillMain
+InfAmmoLegit.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+InfAmmoLegit.BorderColor3 = Color3.fromRGB(86, 86, 86)
+InfAmmoLegit.Position = UDim2.new(0.0728894174, 0, 0.815951705, 0)
+InfAmmoLegit.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
+InfAmmoLegit.Font = Enum.Font.Nunito
+InfAmmoLegit.Text = "Inf Ammo (legit)"
+InfAmmoLegit.TextColor3 = Color3.fromRGB(234, 234, 234)
+InfAmmoLegit.TextScaled = true
+InfAmmoLegit.TextSize = 14.000
+InfAmmoLegit.TextWrapped = true
 
 InfYield.Name = "InfYield"
 InfYield.Parent = BunkerHillMain
@@ -224,8 +232,8 @@ OtherFrame.Parent = BunkerHillFrame
 OtherFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 OtherFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
 OtherFrame.BorderSizePixel = 0
-OtherFrame.Position = UDim2.new(0.568935156, 0, 0.582092941, 0)
-OtherFrame.Size = UDim2.new(0.359431744, 0, 0.339335263, 0)
+OtherFrame.Position = UDim2.new(0.566466033, 0, 0.209662586, 0)
+OtherFrame.Size = UDim2.new(0.359431773, 0, 0.316417277, 0)
 
 Name_3.Name = "Name"
 Name_3.Parent = OtherFrame
@@ -257,8 +265,8 @@ NoJumpDelay.Name = "NoJumpDelay"
 NoJumpDelay.Parent = OtherFrame
 NoJumpDelay.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 NoJumpDelay.BorderColor3 = Color3.fromRGB(86, 86, 86)
-NoJumpDelay.Position = UDim2.new(0.0706008151, 0, 0.131716833, 0)
-NoJumpDelay.Size = UDim2.new(0.843000054, 0, 0.147292241, 0)
+NoJumpDelay.Position = UDim2.new(0.0706008226, 0, 0.131716833, 0)
+NoJumpDelay.Size = UDim2.new(0.843000054, 0, 0.12505278, 0)
 NoJumpDelay.Font = Enum.Font.Nunito
 NoJumpDelay.Text = "No jump delay"
 NoJumpDelay.TextColor3 = Color3.fromRGB(234, 234, 234)
@@ -270,8 +278,8 @@ OfficerSaber.Name = "OfficerSaber"
 OfficerSaber.Parent = OtherFrame
 OfficerSaber.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 OfficerSaber.BorderColor3 = Color3.fromRGB(86, 86, 86)
-OfficerSaber.Position = UDim2.new(0.0843187273, 0, 0.349823385, 0)
-OfficerSaber.Size = UDim2.new(0.842999995, 0, 0.147, 0)
+OfficerSaber.Position = UDim2.new(0.0843188092, 0, 0.316891819, 0)
+OfficerSaber.Size = UDim2.new(0.842999995, 0, 0.124804705, 0)
 OfficerSaber.Font = Enum.Font.Nunito
 OfficerSaber.Text = "Officer Saber"
 OfficerSaber.TextColor3 = Color3.fromRGB(234, 234, 234)
@@ -279,39 +287,52 @@ OfficerSaber.TextScaled = true
 OfficerSaber.TextSize = 14.000
 OfficerSaber.TextWrapped = true
 
-ApplyStuds.Name = "ApplyStuds"
-ApplyStuds.Parent = OtherFrame
-ApplyStuds.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-ApplyStuds.BorderColor3 = Color3.fromRGB(86, 86, 86)
-ApplyStuds.Position = UDim2.new(0.0843187273, 0, 0.760175526, 0)
-ApplyStuds.Size = UDim2.new(0.842999995, 0, 0.147, 0)
-ApplyStuds.Font = Enum.Font.Nunito
-ApplyStuds.Text = "Apply"
-ApplyStuds.TextColor3 = Color3.fromRGB(234, 234, 234)
-ApplyStuds.TextScaled = true
-ApplyStuds.TextSize = 14.000
-ApplyStuds.TextWrapped = true
+FullBright.Name = "FullBright"
+FullBright.Parent = OtherFrame
+FullBright.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+FullBright.BorderColor3 = Color3.fromRGB(86, 86, 86)
+FullBright.Position = UDim2.new(0.0843188092, 0, 0.664117515, 0)
+FullBright.Size = UDim2.new(0.842999995, 0, 0.124804705, 0)
+FullBright.Font = Enum.Font.Nunito
+FullBright.Text = "FullBright"
+FullBright.TextColor3 = Color3.fromRGB(234, 234, 234)
+FullBright.TextScaled = true
+FullBright.TextSize = 14.000
+FullBright.TextWrapped = true
 
-StudsBox.Name = "StudsBox"
-StudsBox.Parent = OtherFrame
-StudsBox.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-StudsBox.BorderColor3 = Color3.fromRGB(86, 86, 86)
-StudsBox.Position = UDim2.new(0.082333006, 0, 0.56263721, 0)
-StudsBox.Size = UDim2.new(0.843000054, 0, 0.14452602, 0)
-StudsBox.Font = Enum.Font.SourceSans
-StudsBox.PlaceholderText = "Enter killed studs here"
-StudsBox.Text = ""
-	StudsBox.TextColor3 = Color3.fromRGB(226, 226, 226)
-	StudsBox.TextScaled = true
-StudsBox.TextSize = 14.000
+NoFog.Name = "NoFog"
+NoFog.Parent = OtherFrame
+NoFog.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+NoFog.BorderColor3 = Color3.fromRGB(86, 86, 86)
+NoFog.Position = UDim2.new(0.0706008226, 0, 0.478942513, 0)
+NoFog.Size = UDim2.new(0.843000054, 0, 0.12505278, 0)
+NoFog.Font = Enum.Font.Nunito
+NoFog.Text = "No Fog"
+NoFog.TextColor3 = Color3.fromRGB(234, 234, 234)
+NoFog.TextScaled = true
+NoFog.TextSize = 14.000
+NoFog.TextWrapped = true
+
+Seat.Name = "Seat"
+Seat.Parent = OtherFrame
+Seat.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Seat.BorderColor3 = Color3.fromRGB(86, 86, 86)
+Seat.Position = UDim2.new(0.0839999989, 0, 0.839999974, 0)
+Seat.Size = UDim2.new(0.842999995, 0, 0.124804705, 0)
+Seat.Font = Enum.Font.Nunito
+Seat.Text = "Seat :)"
+Seat.TextColor3 = Color3.fromRGB(234, 234, 234)
+Seat.TextScaled = true
+Seat.TextSize = 14.000
+Seat.TextWrapped = true
 
 TpsFrame.Name = "TpsFrame"
 TpsFrame.Parent = BunkerHillFrame
 TpsFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 TpsFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
 TpsFrame.BorderSizePixel = 0
-TpsFrame.Position = UDim2.new(0.56646663, 0, 0.116105855, 0)
-TpsFrame.Size = UDim2.new(0.359431744, 0, 0.432166576, 0)
+TpsFrame.Position = UDim2.new(0.568935752, 0, -0.035297595, 0)
+TpsFrame.Size = UDim2.new(0.359431744, 0, 0.219980732, 0)
 
 Name_4.Name = "Name"
 Name_4.Parent = TpsFrame
@@ -391,18 +412,192 @@ Church.TextScaled = true
 Church.TextSize = 14.000
 Church.TextWrapped = true
 
+FakeProofFrame.Name = "FakeProofFrame"
+FakeProofFrame.Parent = BunkerHillFrame
+FakeProofFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+FakeProofFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
+FakeProofFrame.BorderSizePixel = 0
+FakeProofFrame.Position = UDim2.new(0.0757138059, 0, 0.350014687, 0)
+FakeProofFrame.Size = UDim2.new(0.402468026, 0, 0.19197315, 0)
+
+Name_5.Name = "Name"
+Name_5.Parent = FakeProofFrame
+Name_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name_5.BackgroundTransparency = 1.000
+Name_5.Position = UDim2.new(0.144172058, 0, -0.0652448386, 0)
+Name_5.Size = UDim2.new(0.714506209, 0, 0.134596989, 0)
+Name_5.ZIndex = 3
+Name_5.Font = Enum.Font.Nunito
+Name_5.Text = "Fake Proof"
+Name_5.TextColor3 = Color3.fromRGB(234, 234, 234)
+Name_5.TextScaled = true
+Name_5.TextSize = 14.000
+Name_5.TextWrapped = true
+
+PurpleBar_8.Name = "PurpleBar"
+PurpleBar_8.Parent = FakeProofFrame
+PurpleBar_8.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
+PurpleBar_8.Position = UDim2.new(-0.00686531607, 0, -0.00522779673, 0)
+PurpleBar_8.Size = UDim2.new(0.151037291, 0, 0.0160168055, 0)
+
+PurpleBar_9.Name = "PurpleBar"
+PurpleBar_9.Parent = FakeProofFrame
+PurpleBar_9.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
+PurpleBar_9.Position = UDim2.new(0.858678281, 0, -0.00522779673, 0)
+PurpleBar_9.Size = UDim2.new(0.134456143, 0, 0.0160168055, 0)
+
+ApplyStuds.Name = "ApplyStuds"
+ApplyStuds.Parent = FakeProofFrame
+ApplyStuds.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+ApplyStuds.BorderColor3 = Color3.fromRGB(86, 86, 86)
+ApplyStuds.Position = UDim2.new(0.0260971747, 0, 0.676800907, 0)
+ApplyStuds.Size = UDim2.new(0.942527652, 0, 0.240333572, 0)
+ApplyStuds.Font = Enum.Font.Nunito
+ApplyStuds.Text = "Apply"
+ApplyStuds.TextColor3 = Color3.fromRGB(234, 234, 234)
+ApplyStuds.TextScaled = true
+ApplyStuds.TextSize = 14.000
+ApplyStuds.TextWrapped = true
+
+StudsBox.Name = "StudsBox"
+StudsBox.Parent = FakeProofFrame
+StudsBox.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+StudsBox.BorderColor3 = Color3.fromRGB(86, 86, 86)
+StudsBox.Position = UDim2.new(0.0238770396, 0, 0.376867652, 0)
+StudsBox.Size = UDim2.new(0.942527652, 0, 0.236288801, 0)
+StudsBox.Font = Enum.Font.SourceSans
+StudsBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+StudsBox.PlaceholderText = "Enter killed studs here"
+StudsBox.Text = ""
+StudsBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+StudsBox.TextScaled = true
+StudsBox.TextSize = 14.000
+StudsBox.TextWrapped = true
+
+Info.Name = "Info"
+Info.Parent = FakeProofFrame
+Info.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Info.BorderColor3 = Color3.fromRGB(86, 86, 86)
+Info.Position = UDim2.new(0.018382268, 0, 0.0690805689, 0)
+Info.Size = UDim2.new(0.943000019, 0, 0.236000001, 0)
+Info.Font = Enum.Font.SourceSans
+Info.Text = "Enter an amount then when you die just press apply"
+Info.TextColor3 = Color3.fromRGB(234, 234, 234)
+Info.TextScaled = true
+Info.TextSize = 14.000
+Info.TextWrapped = true
+
+KeyboardFrame.Name = "KeyboardFrame"
+KeyboardFrame.Parent = ScrollingFrame
+KeyboardFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KeyboardFrame.BackgroundTransparency = 1.000
+KeyboardFrame.Size = UDim2.new(1, 0, 0.99999994, 0)
+KeyboardFrame.Visible = false
+
+QDelete.Name = "QDelete"
+QDelete.Parent = KeyboardFrame
+QDelete.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+QDelete.BorderColor3 = Color3.fromRGB(86, 86, 86)
+QDelete.Position = UDim2.new(0.0578397363, 0, 0.143429995, 0)
+QDelete.Size = UDim2.new(0.84685564, 0, 0.0908944905, 0)
+QDelete.Font = Enum.Font.SourceSans
+QDelete.Text = "Hold Q + Left Click a part to delete it"
+QDelete.TextColor3 = Color3.fromRGB(234, 234, 234)
+QDelete.TextScaled = true
+QDelete.TextSize = 14.000
+QDelete.TextWrapped = true
+
+OpenClose.Name = "OpenClose"
+OpenClose.Parent = KeyboardFrame
+OpenClose.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+OpenClose.BorderColor3 = Color3.fromRGB(86, 86, 86)
+OpenClose.Position = UDim2.new(0.0578397326, 0, 0.0257100463, 0)
+OpenClose.Size = UDim2.new(0.84685564, 0, 0.0908944905, 0)
+OpenClose.Font = Enum.Font.SourceSans
+OpenClose.Text = "Open/Close UI - LeftAlt"
+OpenClose.TextColor3 = Color3.fromRGB(234, 234, 234)
+OpenClose.TextScaled = true
+OpenClose.TextSize = 14.000
+OpenClose.TextWrapped = true
+
+Credits.Name = "Credits"
+Credits.Parent = KeyboardFrame
+Credits.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Credits.BorderColor3 = Color3.fromRGB(86, 86, 86)
+Credits.Position = UDim2.new(0.0578397326, 0, 0.259084702, 0)
+Credits.Size = UDim2.new(0.84685564, 0, 0.0908944905, 0)
+Credits.Font = Enum.Font.SourceSans
+Credits.Text = "Credits to Consuming#1969 for that funny script"
+Credits.TextColor3 = Color3.fromRGB(234, 234, 234)
+Credits.TextScaled = true
+Credits.TextSize = 14.000
+Credits.TextWrapped = true
+
+Sections.Name = "Sections"
+Sections.Parent = MAIN
+Sections.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+Sections.BackgroundTransparency = 0.100
+Sections.Position = UDim2.new(0, 0, 0.0700000003, 0)
+Sections.Size = UDim2.new(1, 0, 0.0606060885, 0)
+
+Main.Name = "Main"
+Main.Parent = Sections
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.BackgroundTransparency = 1.000
+Main.Position = UDim2.new(0.00606060028, 0, 0.0999999493, 0)
+Main.Size = UDim2.new(0.231000006, 0, 0.899999976, 0)
+Main.Font = Enum.Font.Nunito
+Main.Text = "Main"
+Main.TextColor3 = Color3.fromRGB(234, 234, 234)
+Main.TextScaled = true
+Main.TextSize = 14.000
+Main.TextWrapped = true
+
+ActivatedBar.Name = "ActivatedBar"
+ActivatedBar.Parent = Main
+ActivatedBar.BackgroundColor3 = Color3.fromRGB(163, 44, 193)
+ActivatedBar.Position = UDim2.new(0, 0, 1, 0)
+ActivatedBar.Size = UDim2.new(1, 0, 0, 3)
+
+Settings.Name = "Settings"
+Settings.Parent = Sections
+Settings.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Settings.BackgroundTransparency = 1.000
+Settings.Position = UDim2.new(0.23636362, 0, 0.0999999493, 0)
+Settings.Size = UDim2.new(0.231000006, 0, 0.899999976, 0)
+Settings.Font = Enum.Font.Nunito
+Settings.Text = "Keybind"
+Settings.TextColor3 = Color3.fromRGB(234, 234, 234)
+Settings.TextScaled = true
+Settings.TextSize = 14.000
+Settings.TextWrapped = true
+
+ActivatedBar_2.Name = "ActivatedBar"
+ActivatedBar_2.Parent = Settings
+ActivatedBar_2.BackgroundColor3 = Color3.fromRGB(163, 44, 193)
+ActivatedBar_2.Position = UDim2.new(0, 0, 1, 0)
+ActivatedBar_2.Size = UDim2.new(1, 0, 0, 3)
+ActivatedBar_2.Visible = false
+
 -- Scripts:
 
-local function KNCPOOS_fake_script() -- Tptool.LocalScript 
-	local script = Instance.new('LocalScript', Tptool)	
+local function THGTOFF_fake_script() -- Tptool.LocalScript 
+	local script = Instance.new('LocalScript', Tptool)
+
+	
+	
+	
 	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/Tptool", true))()
 		
+			
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/Tptool'),true))()
 	end)
 end
-coroutine.wrap(KNCPOOS_fake_script)()
-local function AVVCCDI_fake_script() -- RemoveJail.LocalScript 
-	local script = Instance.new('LocalScript', RemoveJail)	
+coroutine.wrap(THGTOFF_fake_script)()
+local function ZHMAUC_fake_script() -- RemoveJail.LocalScript 
+	local script = Instance.new('LocalScript', RemoveJail)
+	
+	
 	script.Parent.MouseButton1Click:Connect(function()
 			local playerName = game.Players.LocalPlayer.Name
 			local jail = game.ReplicatedStorage.JailedPeople
@@ -421,7 +616,7 @@ local function AVVCCDI_fake_script() -- RemoveJail.LocalScript
 					JailDestroyer:Destroy()
 					if Workspaceplayer:FindFirstChild("Humanoid") then
 						Workspaceplayer.Humanoid.Health = 0
-						
+
 					end
 				else
 					print("not jailed")
@@ -433,16 +628,36 @@ local function AVVCCDI_fake_script() -- RemoveJail.LocalScript
 	
 	
 end
-coroutine.wrap(AVVCCDI_fake_script)()
-local function XCFI_fake_script() -- InfAmmo.LocalScript 
-	local script = Instance.new('LocalScript', InfAmmo)
+coroutine.wrap(ZHMAUC_fake_script)()
+local function UDSDGJB_fake_script() -- InfAmmoNoLegit.LocalScript 
+	local script = Instance.new('LocalScript', InfAmmoNoLegit)
 
+	
+	
 	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/InfAmmo', true))()
+			
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/InfAmmoObvious'),true))()
 	end)
 end
-coroutine.wrap(XCFI_fake_script)()
-local function UWDGRD_fake_script() -- LagSwitch.LocalScript 
+	coroutine.wrap(UDSDGJB_fake_script)()
+	
+	
+	
+	
+	
+	
+	local function UDSDGJsaaB_fake_script() -- InfAmmoLegit.LocalScript 
+		local script = Instance.new('LocalScript', InfAmmoLegit)
+
+
+
+		script.Parent.MouseButton1Click:Connect(function(plr)
+
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/InfAmmoLegit'),true))()
+		end)
+	end
+	coroutine.wrap(UDSDGJsaaB_fake_script)()
+local function QTYYVH_fake_script() -- LagSwitch.LocalScript 
 	local script = Instance.new('LocalScript', LagSwitch)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -450,27 +665,33 @@ local function UWDGRD_fake_script() -- LagSwitch.LocalScript
 	
 	end)
 end
-coroutine.wrap(UWDGRD_fake_script)()
-local function SQSR_fake_script() -- InfYield.LocalScript 
+coroutine.wrap(QTYYVH_fake_script)()
+local function SSSXB_fake_script() -- InfYield.LocalScript 
 	local script = Instance.new('LocalScript', InfYield)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
 	end)
 end
-coroutine.wrap(SQSR_fake_script)()
-local function WZDLL_fake_script() -- NoJumpDelay.LocalScript 
+coroutine.wrap(SSSXB_fake_script)()
+local function CKSB_fake_script() -- NoJumpDelay.LocalScript 
 	local script = Instance.new('LocalScript', NoJumpDelay)
+
+	
+	
 	script.Parent.MouseButton1Click:Connect(function(plr)
-		
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/NoJumpDelay'),true))()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/NoJumpDelay'),true))()
 	end)
 end
-coroutine.wrap(WZDLL_fake_script)()
-local function JWUV_fake_script() -- OfficerSaber.LocalScript 
+coroutine.wrap(CKSB_fake_script)()
+local function FTMAEC_fake_script() -- OfficerSaber.LocalScript 
 	local script = Instance.new('LocalScript', OfficerSaber)
+
+	
+	
 	script.Parent.MouseButton1Click:Connect(function(plr)
 		
+
 			local playerName = game.Players.LocalPlayer.Name
 			local WorkSpace = game:GetService("Workspace")
 			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
@@ -484,66 +705,140 @@ local function JWUV_fake_script() -- OfficerSaber.LocalScript
 				sabre.Size = Vector3.new(2.71422, 1, 2.1)
 				sabre.CFrame = Workspaceplayer.Head.CFrame
 			end
+
+	end)
+end
+coroutine.wrap(FTMAEC_fake_script)()
+local function CXQZTGM_fake_script() -- FullBright.LocalScript 
+	local script = Instance.new('LocalScript', FullBright)
+
+	
+	script.Parent.MouseButton1Click:Connect(function(plr)
+	game.Lighting.Ambient = Color3.new(1, 1, 1)
 		
 	end)
 end
-coroutine.wrap(JWUV_fake_script)()
-local function WJAK_fake_script() -- ApplyStuds.LocalScript 
-	local script = Instance.new('LocalScript', ApplyStuds)
+coroutine.wrap(CXQZTGM_fake_script)()
+local function WBHOB_fake_script() -- NoFog.LocalScript 
+	local script = Instance.new('LocalScript', NoFog)
 
 
 	
 	script.Parent.MouseButton1Click:Connect(function(plr)
 		
+			game.Lighting.FogEnd = "7000000"
+	end)
+end
+coroutine.wrap(WBHOB_fake_script)()
+local function NPHRO_fake_script() -- Seat.LocalScript 
+	local script = Instance.new('LocalScript', Seat)
+
+	
+	
+	script.Parent.MouseButton1Click:Connect(function(plr)
+		
+			
+			
+			
+			local playerName = game.Players.LocalPlayer.Name
+			local WorkSpace = game:GetService("Workspace")
+			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
+
+			
+	
+			local seatt = WorkSpace:FindFirstChild("Piano").Bench.Seat
+			seatt.CFrame = Workspaceplayer["Left Leg"].CFrame
+			seatt.Transparency = 0.5
+			
+
+	end)
+end
+coroutine.wrap(NPHRO_fake_script)()
+local function UBSPR_fake_script() -- BaDown.LocalScript 
+	local script = Instance.new('LocalScript', BaDown)
+
+	
+	
+	script.Parent.MouseButton1Click:Connect(function(plr)
+		
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/TpBASpawn1'),true))()
+	end)
+end
+coroutine.wrap(UBSPR_fake_script)()
+local function QSJGPY_fake_script() -- BaUp.LocalScript 
+	local script = Instance.new('LocalScript', BaUp)
+
+	
+	
+	script.Parent.MouseButton1Click:Connect(function(plr)
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/TpBASpawn2'),true))()
+	end)
+end
+coroutine.wrap(QSJGPY_fake_script)()
+local function BNMXZJ_fake_script() -- CaSpawn.LocalScript 
+	local script = Instance.new('LocalScript', CaSpawn)
+
+	script.Parent.MouseButton1Click:Connect(function(plr)
+		
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/TpCaSpawn1'),true))()
+	end)
+end
+coroutine.wrap(BNMXZJ_fake_script)()
+local function QDDHHJQ_fake_script() -- Church.LocalScript 
+		local script = Instance.new('LocalScript', Church)
+		
+	script.Parent.MouseButton1Click:Connect(function(plr)
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/TpChurch1'),true))()
+	end)
+end
+coroutine.wrap(QDDHHJQ_fake_script)()
+local function MAECUT_fake_script() -- ApplyStuds.LocalScript 
+	local script = Instance.new('LocalScript', ApplyStuds)
+
+	script.Parent.MouseButton1Click:Connect(function(plr)
+
 			local playerName = game.Players.LocalPlayer.Name
 			local WorkSpace = game:GetService("Workspace")
 			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
 			local textbox = script.Parent.Parent.StudsBox
-				local frame = game.Players.LocalPlayer.PlayerGui.DeathShower.Frame
+			local frame = game.Players.LocalPlayer.PlayerGui.DeathShower.Frame
 			frame.studs.Text = textbox.Text.." Studs"
 
-		
 	end)
 end
-coroutine.wrap(WJAK_fake_script)()
-local function IBHPE_fake_script() -- BaDown.LocalScript 
-	local script = Instance.new('LocalScript', BaDown)
+coroutine.wrap(MAECUT_fake_script)()
+local function WBBKNXP_fake_script() -- Main.LocalScript 
+	local script = Instance.new('LocalScript', Main)
 
 	
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpBASpawn1'),true))()
-		
+	
+	
+	script.Parent.MouseButton1Click:Connect(function()
+			script.Parent.Parent.Parent.ScrollingFrame.KeyboardFrame.Visible = false
+			script.Parent.ActivatedBar.Visible = false
+			script.Parent.Parent.Parent.ScrollingFrame.BunkerHillFrame.Visible = true
+
+			script.Parent.Parent.Main.ActivatedBar.Visible = true
 	end)
 end
-coroutine.wrap(IBHPE_fake_script)()
-local function CCHR_fake_script() -- BaUp.LocalScript 
-	local script = Instance.new('LocalScript', BaUp)
+coroutine.wrap(WBBKNXP_fake_script)()
+local function DMBR_fake_script() -- Settings.LocalScript 
+	local script = Instance.new('LocalScript', Settings)
 
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpBASpawn2'),true))()
-		
+	
+	
+	
+	script.Parent.MouseButton1Click:Connect(function()
+			script.Parent.Parent.Parent.ScrollingFrame.KeyboardFrame.Visible = true
+		script.Parent.ActivatedBar.Visible = true
+			script.Parent.Parent.Parent.ScrollingFrame.BunkerHillFrame.Visible = false
+	
+		script.Parent.Parent.Main.ActivatedBar.Visible = false
 	end)
 end
-coroutine.wrap(CCHR_fake_script)()
-local function ZTFQFG_fake_script() -- CaSpawn.LocalScript 
-	local script = Instance.new('LocalScript', CaSpawn)
-
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpCaSpawn1'),true))()
-	end)
-end
-coroutine.wrap(ZTFQFG_fake_script)()
-local function SDAUOED_fake_script() -- Church.LocalScript 
-	local script = Instance.new('LocalScript', Church)
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpChurch1'),true))()	
-	end)
-end
-coroutine.wrap(SDAUOED_fake_script)()
-local function NXYBDA_fake_script() -- ConsumerHubBunkerHill.OpenClose 
-	local script = Instance.new('LocalScript', ConsumerHubBunkerHill)
+coroutine.wrap(DMBR_fake_script)()
+local function JNGLO_fake_script() -- ConsumerHubBunkerHillv12.OpenClose 
+	local script = Instance.new('LocalScript', ConsumerHubBunkerHillv12)
 
 	
 	
@@ -568,5 +863,5 @@ local function NXYBDA_fake_script() -- ConsumerHubBunkerHill.OpenClose
 		
 	end)
 end
-coroutine.wrap(NXYBDA_fake_script)()
+coroutine.wrap(JNGLO_fake_script)()
 end
