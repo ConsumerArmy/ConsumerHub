@@ -3,9 +3,28 @@
 
 -- Instances:
 
-if game.CoreGui:FindFirstChild("ConsumerHubBunkerHill") then
+if game.CoreGui:FindFirstChild("GAHshasve1621DVseyswebscasf") then
 	print("Already Injected")
 else
+
+
+
+
+	local Plr = game:GetService("Players").LocalPlayer
+	local Mouse = Plr:GetMouse()
+
+	Mouse.Button1Down:connect(function()
+			if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.Q) then
+				return
+			end
+			if not Mouse.Target then
+				return
+			end
+			Mouse.Target:Destroy()
+		end
+	)
+
+
 
 
 local ConsumerHubBunkerHillv12 = Instance.new("ScreenGui")
