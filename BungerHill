@@ -25,6 +25,8 @@ else
 	)
 
 
+local player = game.Players.LocalPlayer
+
 
 
 local ConsumerHubBunkerHillv12 = Instance.new("ScreenGui")
@@ -870,6 +872,11 @@ local function JNGLO_fake_script() -- ConsumerHubBunkerHillv12.OpenClose
 			
 			return end
 			game:GetService("StarterGui"):SetCore("ResetButtonCallback", true)
+			
+			if player.PlayerGui:FindFirstChild("EASY ANTI CHEAT") then
+                  player.PlayerGui["EASY ANTI CHEAT"]:Destroy()
+    end
+			
 			if input.KeyCode == Enum.KeyCode.LeftAlt then
 				
 			if script.Parent.MAIN.Visible == true then
