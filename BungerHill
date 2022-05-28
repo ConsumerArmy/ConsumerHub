@@ -776,29 +776,23 @@ coroutine.wrap(ZHMAUC_fake_script)()
 
 local function IDsafgasTVW_fake_script() -- Civilian.LocalScript 
 	local script = Instance.new('LocalScript', Civilian)
-
-	local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
-
-
-l__TeamSelect__7:FireServer(game:GetService("Teams")["Civilian"]);
+	script.Parent.MouseButton1Click:Connect(function(plr)
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CATEam'),true))()
+	end)
 end
 coroutine.wrap(IDsafgasTVW_fake_script)()
 local function ZsaFRaaM_fake_script() -- BA.LocalScript 
 	local script = Instance.new('LocalScript', BA)
-
-	local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
-
-
-l__TeamSelect__7:FireServer(game:GetService("Teams")["British Army"]);
+	script.Parent.MouseButton1Click:Connect(function(plr)
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CATEam'),true))()
+	end)
 end
 coroutine.wrap(ZsaFRaaM_fake_script)()
 local function GAsssMY_fake_script() -- CA.LocalScript 
 	local script = Instance.new('LocalScript', CA)
-local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
-
-
-l__TeamSelect__7:FireServer(game:GetService("Teams")["Continental Army"]);
-	
+	script.Parent.MouseButton1Click:Connect(function(plr)
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CATEam'),true))()
+	end)
 end
 coroutine.wrap(GAsssMY_fake_script)()
 
