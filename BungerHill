@@ -67,7 +67,7 @@ local player = game.Players.LocalPlayer
 
 
 
-local ConsumerHubBunkerHillv12 = Instance.new("ScreenGui")
+        local ConsumerHubBunkerHillv12 = Instance.new("ScreenGui")
 local MAIN = Instance.new("ImageLabel")
 local Tittle = Instance.new("Frame")
 local Name = Instance.new("TextLabel")
@@ -108,6 +108,13 @@ local PurpleBar_9 = Instance.new("Frame")
 local ApplyStuds = Instance.new("TextButton")
 local StudsBox = Instance.new("TextBox")
 local Info = Instance.new("TextLabel")
+local TeamFrame = Instance.new("Frame")
+local Name_6 = Instance.new("TextLabel")
+local PurpleBar_10 = Instance.new("Frame")
+local PurpleBar_11 = Instance.new("Frame")
+local Civilian = Instance.new("TextButton")
+local BA = Instance.new("TextButton")
+local CA = Instance.new("TextButton")
 local KeyboardFrame = Instance.new("Frame")
 local QDelete = Instance.new("TextLabel")
 local OpenClose = Instance.new("TextLabel")
@@ -546,6 +553,80 @@ Info.TextScaled = true
 Info.TextSize = 14.000
 Info.TextWrapped = true
 
+TeamFrame.Name = "TeamFrame"
+TeamFrame.Parent = BunkerHillFrame
+TeamFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TeamFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
+TeamFrame.BorderSizePixel = 0
+TeamFrame.Position = UDim2.new(0.096890077, 0, 0.564410806, 0)
+TeamFrame.Size = UDim2.new(0.359431773, 0, 0.188221663, 0)
+
+Name_6.Name = "Name"
+Name_6.Parent = TeamFrame
+Name_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name_6.BackgroundTransparency = 1.000
+Name_6.Position = UDim2.new(-0.0276041739, 0, -0.123959355, 0)
+Name_6.Size = UDim2.new(1.04809868, 0, 0.263768941, 0)
+Name_6.ZIndex = 3
+Name_6.Font = Enum.Font.Nunito
+Name_6.Text = "Team"
+Name_6.TextColor3 = Color3.fromRGB(234, 234, 234)
+Name_6.TextScaled = true
+Name_6.TextSize = 14.000
+Name_6.TextWrapped = true
+
+PurpleBar_10.Name = "PurpleBar"
+PurpleBar_10.Parent = TeamFrame
+PurpleBar_10.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
+PurpleBar_10.Position = UDim2.new(-0.00686531607, 0, -0.00522779673, 0)
+PurpleBar_10.Size = UDim2.new(0.151037291, 0, 0.0160168055, 0)
+
+PurpleBar_11.Name = "PurpleBar"
+PurpleBar_11.Parent = TeamFrame
+PurpleBar_11.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
+PurpleBar_11.Position = UDim2.new(0.858678281, 0, -0.00522779673, 0)
+PurpleBar_11.Size = UDim2.new(0.134456143, 0, 0.0160168055, 0)
+
+Civilian.Name = "Civilian"
+Civilian.Parent = TeamFrame
+Civilian.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Civilian.BorderColor3 = Color3.fromRGB(86, 86, 86)
+Civilian.Position = UDim2.new(0.0843188316, 0, 0.134214669, 0)
+Civilian.Size = UDim2.new(0.842999995, 0, 0.226091474, 0)
+Civilian.Font = Enum.Font.Nunito
+Civilian.Text = "Civilan"
+Civilian.TextColor3 = Color3.fromRGB(234, 234, 234)
+Civilian.TextScaled = true
+Civilian.TextSize = 14.000
+Civilian.TextWrapped = true
+
+BA.Name = "BA"
+BA.Parent = TeamFrame
+BA.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+BA.BorderColor3 = Color3.fromRGB(86, 86, 86)
+BA.Position = UDim2.new(0.0843188316, 0, 0.404301465, 0)
+BA.Size = UDim2.new(0.842999995, 0, 0.226091474, 0)
+BA.Font = Enum.Font.Nunito
+BA.Text = "BA"
+BA.TextColor3 = Color3.fromRGB(234, 234, 234)
+BA.TextScaled = true
+BA.TextSize = 14.000
+BA.TextWrapped = true
+
+CA.Name = "CA"
+CA.Parent = TeamFrame
+CA.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+CA.BorderColor3 = Color3.fromRGB(86, 86, 86)
+CA.Position = UDim2.new(0.0843188316, 0, 0.703745544, 0)
+CA.Size = UDim2.new(0.842999995, 0, 0.226091474, 0)
+CA.Font = Enum.Font.Nunito
+CA.Text = "CA"
+CA.TextColor3 = Color3.fromRGB(234, 234, 234)
+CA.TextScaled = true
+CA.TextSize = 14.000
+CA.TextWrapped = true
+
+
 KeyboardFrame.Name = "KeyboardFrame"
 KeyboardFrame.Parent = ScrollingFrame
 KeyboardFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -688,6 +769,40 @@ local function ZHMAUC_fake_script() -- RemoveJail.LocalScript
 	
 end
 coroutine.wrap(ZHMAUC_fake_script)()
+
+
+
+
+
+local function IDsafgasTVW_fake_script() -- Civilian.LocalScript 
+	local script = Instance.new('LocalScript', Civilian)
+
+	local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
+
+
+l__TeamSelect__7:FireServer(game:GetService("Teams")["Civilian"]);
+end
+coroutine.wrap(IDsafgasTVW_fake_script)()
+local function ZsaFRaaM_fake_script() -- BA.LocalScript 
+	local script = Instance.new('LocalScript', BA)
+
+	local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
+
+
+l__TeamSelect__7:FireServer(game:GetService("Teams")["British Army"]);
+end
+coroutine.wrap(ZsaFRaaM_fake_script)()
+local function GAsssMY_fake_script() -- CA.LocalScript 
+	local script = Instance.new('LocalScript', CA)
+local l__TeamSelect__7 = game:GetService("ReplicatedStorage").TeamSelect;
+
+
+l__TeamSelect__7:FireServer(game:GetService("Teams")["Continental Army"]);
+	
+end
+coroutine.wrap(GAsssMY_fake_script)()
+
+
 local function UDSDGJB_fake_script() -- InfAmmoNoLegit.LocalScript 
 	local script = Instance.new('LocalScript', InfAmmoNoLegit)
 
