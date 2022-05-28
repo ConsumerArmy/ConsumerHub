@@ -874,10 +874,10 @@ local function WBBKNXP_fake_script() -- Main.LocalScript
 	
 	script.Parent.MouseButton1Click:Connect(function()
 			script.Parent.Parent.Parent.ScrollingFrame.KeyboardFrame.Visible = false
-			script.Parent.ActivatedBar.Visible = false
+			script.Parent.Parent.Settings.ActivatedBar.Visible = false
 			script.Parent.Parent.Parent.ScrollingFrame.BunkerHillFrame.Visible = true
 
-			script.Parent.Parent.Settings.ActivatedBar.Visible = true
+			script.Parent.Parent.Main.ActivatedBar.Visible = true
 	end)
 end
 coroutine.wrap(WBBKNXP_fake_script)()
