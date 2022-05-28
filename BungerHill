@@ -777,14 +777,14 @@ coroutine.wrap(ZHMAUC_fake_script)()
 local function IDsafgasTVW_fake_script() -- Civilian.LocalScript 
 	local script = Instance.new('LocalScript', Civilian)
 	script.Parent.MouseButton1Click:Connect(function(plr)
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CATEam'),true))()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CivilianTeam'),true))()
 	end)
 end
 coroutine.wrap(IDsafgasTVW_fake_script)()
 local function ZsaFRaaM_fake_script() -- BA.LocalScript 
 	local script = Instance.new('LocalScript', BA)
 	script.Parent.MouseButton1Click:Connect(function(plr)
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/CATEam'),true))()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/BATeam'),true))()
 	end)
 end
 coroutine.wrap(ZsaFRaaM_fake_script)()
