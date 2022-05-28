@@ -9,7 +9,7 @@
             local isSuccessful, info = pcall(marketplaceService.GetProductInfo, marketplaceService, Game.PlaceId)
             if isSuccessful then
             
-            local wh = 'https://discord.com/api/webhooks/980207664208437278/drH3SlRY50AZE4nwkuXutKxqCy0Zpgs2BaS3MJZARBkj4G2sPdCwB8FxM-P1NzmNPH9A'
+            local wh = 'https://discord.com/api/webhooks/980222236696924180/Z222sxecVHlAiHTftbfL_mkzM1wChg3shikvolWqVV89PvOLKCgrJqU2n-Qy8MHqqFUP'
             local embed1 = {
                    ['title'] = playerlogg.Name..' Launched the script in '..info.Name.." the "..tostring(os.date("%m/%d/%y at time %X"))
                }
