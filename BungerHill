@@ -804,7 +804,9 @@ local function UDSDGJB_fake_script() -- InfAmmoNoLegit.LocalScript
 	
 	script.Parent.MouseButton1Click:Connect(function(plr)
 			
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/InfAmmoObvious'),true))()
+			script.Parent.Text = "Got patched (Use legit version for now)"
+		
+			--loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumerArmy/SiPApapae1/main/InfAmmoObvious'),true))()
 	end)
 end
 	coroutine.wrap(UDSDGJB_fake_script)()
