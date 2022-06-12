@@ -1,0 +1,883 @@
+
+
+
+
+-- **IF YOU USE ANY OF THIS CODE IN YOUR SCRIPT, CREDIT ME.**
+-- enjoy
+-- my code is shit, just a forewarning
+
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+
+-- predefine some vars
+local UserInputService = game:GetService('UserInputService')
+sprintSpeed = 24
+walkSpeed = 16
+farmTime = 1 / 9.6
+killHeight = -7
+swordToUse = nil
+back = CFrame.Angles(0, math.rad(0), 0)
+front = CFrame.Angles(0, math.rad(180), 0)
+right  = CFrame.Angles(0, math.rad(90), 0)
+left  = CFrame.Angles(0, math.rad(270), 0)
+isViewing = false
+Clip = true
+playerIsInVehicle = false
+
+
+
+
+
+
+-- Find da player 
+local function GetPlayer(Input)
+    for _, Player in ipairs(game.Players:GetPlayers()) do
+    	if (string.lower(Input) == string.sub(string.lower(Player.Name), 1, #Input)) or (string.lower(Input) == string.sub(string.lower(Player.DisplayName), 1, #Input))then
+    		return Player;
+    	end
+    end
+end
+
+if Noclipping then
+	Noclipping:Disconnect()
+end
+
+
+function noclip()
+	Clip = false
+	function NoclipLoop()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	Noclipping = game:GetService('RunService').Stepped:connect(NoclipLoop)
+end
+
+-- Kill player function
+
+local function killPlayer(playerToKill, swordToUse)
+		
+
+    
+
+	
+	
+	players = game.Players:GetChildren()
+	wasPlayerKilled = false
+	workPlr = workspace[game.Players.LocalPlayer.Name]
+	poopyFrame = Vector3.new(0,-4,1.5)
+	rotateAngle = Vector3.new(0,999999,0)
+	
+	if swordToUse and swordToUse ~= "Autoselect" then
+	    tool = swordToUse
+	elseif swordToUse == nil or not swordToUse or swordToUse == "Autoselect" then
+	
+    	if game.Players.LocalPlayer.Backpack:FindFirstChild("LinkedSword") then
+    		tool = game.Players.LocalPlayer.Backpack["LinkedSword"]
+    	elseif workPlr:FindFirstChild("LinkedSword") then 
+    		tool = workPlr["LinkedSword"]
+    	elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Good Sword") then
+    		tool = game.Players.LocalPlayer.Backpack["Good Sword"]
+    	elseif workPlr:FindFirstChild("Good Sword") then 
+    		tool = workPlr["Good Sword"]
+    	elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Sword") then
+    		tool = game.Players.LocalPlayer.Backpack["Sword"]
+    	elseif workPlr:FindFirstChild("Sword") then 
+    		tool = workPlr["Sword"]
+    	elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Guard Sword") then
+    		tool = game.Players.LocalPlayer.Backpack["Guard Sword"]
+    	elseif workPlr:FindFirstChild("Guard Sword") then 
+    		tool = workPlr["Guard Sword"]
+    	elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Basic Sword") then
+    		tool = game.Players.LocalPlayer.Backpack["Basic Sword"]
+    	elseif workPlr:FindFirstChild("Basic Sword") then 
+    		tool = workPlr["Basic Sword"]
+    	else
+    	    Notify("Autokill", "You need a sword!", 5)
+    	end
+    end
+	
+	
+	killFuncPlayer = game.Workspace:WaitForChild(playerToKill)
+	playerinPlayers = game.Players:WaitForChild(playerToKill)
+	
+	if tool ~= nil then
+		game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+		
+		for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if v:IsA("Tool") then
+
+				currentToolSize = v.Handle.Size
+				currentGripPos = v.GripPos
+			
+				
+		
+				v.Handle.Massless = true
+				v.Handle.Size = Vector3.new(0.5,0.5,60)
+				v.GripPos = Vector3.new(0,0,0)
+				game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+			
+			end
+		end
+		wait(0.1)
+		game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+		
+		noclip = false
+				
+		game:GetService('RunService').Stepped:connect(function()
+			if noclip then
+				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+			end
+		end)
+		
+		
+		noclip = true
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+	
+		game.Workspace.Camera.CameraSubject = playerinPlayers.Character.Humanoid
+		
+		while wasPlayerKilled == false do
+			wait()
+			
+			if game.Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+				game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
+			end
+			
+			poopyPlayerFrame = Vector3.new(0,killHeight,1.5)
+			velocityPlayer = killFuncPlayer.Torso.Velocity
+            targetPlayerLocation = Vector3.new(killFuncPlayer.Torso.Position.x + (velocityPlayer.x * predIntensity), killFuncPlayer.Torso.Position.y, killFuncPlayer.Torso.Position.z + (velocityPlayer.z * predIntensity))
+
+			newtargetPlayerLocation = targetPlayerLocation + poopyPlayerFrame
+
+			
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(newtargetPlayerLocation, rotateAngle)
+			
+			tool.Equipped:Connect(function()    
+				tool:Activate()
+			end)
+			
+			if killFuncPlayer.Humanoid.Health == 0 or workPlr.Humanoid.Health == 0 or not game.Players:FindFirstChild(playerinPlayers.Name) or game.Players[playerToKill].Character.Humanoid.Health == 0 then -- stop when ded
+				wasPlayerKilled = true
+				
+				
+			end            
+		end
+		noclip = false
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		plr1 = game.Players.LocalPlayer.Character
+        game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+
+	end
+end
+
+-- Notify
+function Notify(titletxt, text, time)
+    local GUI = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame", GUI)
+    local title = Instance.new("TextLabel", Main)
+    local message = Instance.new("TextLabel", Main)
+    GUI.Name = "NotificationOof"
+    GUI.Parent = game.CoreGui
+    Main.Name = "MainFrame"
+    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(1, 5, 0, 50)
+    Main.Size = UDim2.new(0, 330, 0, 110)
+    Main.BackgroundTransparency = 0.1
+
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.BackgroundTransparency = 0.9
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.Font = Enum.Font.SourceSansSemibold
+    title.Text = titletxt
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.TextSize = 17
+    
+    message.BackgroundColor3 = Color3.new(0, 0, 0)
+    message.BackgroundTransparency = 1
+    message.Position = UDim2.new(0, 0, 0, 30)
+    message.Size = UDim2.new(1, 0, 1, -30)
+    message.Font = Enum.Font.SourceSans
+    message.Text = text
+    message.TextColor3 = Color3.new(1, 1, 1)
+    message.TextSize = 16
+
+    wait(0.1)
+    Main:TweenPosition(UDim2.new(1, -330, 0, 50), "Out", "Sine", 0.5)
+    wait(time)
+    Main:TweenPosition(UDim2.new(1, 5, 0, 50), "Out", "Sine", 0.5)
+    wait(0.6)
+    GUI:Destroy();
+end
+
+Notify("Warning: Script detected", 4)
+
+function WeaponsGUI(titletxt, text)
+    
+    local GUI = Instance.new("ScreenGui")
+
+    local Main = Instance.new("Frame", GUI)
+    local title = Instance.new("TextLabel", Main)
+    local message = Instance.new("TextLabel", Main)
+    local rounded = Instance.new("UICorner", Main)
+    local titleRounded = Instance.new("UICorner", title)
+    rounded.CornerRadius = UDim.new(0.05, 0)
+    titleRounded.CornerRadius = UDim.new(0.05, 0)
+    GUI.Name = "NotificationOof"
+    GUI.Parent = game.CoreGui
+    Main.Name = "MainFrame"
+    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(1, 5, 0, 50)
+    Main.Size = UDim2.new(0, 400, 0, 200 + numLines * 6)
+    Main.BackgroundTransparency = 0.2
+
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.BackgroundTransparency = 1
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.Font = Enum.Font.GothamSemibold
+    title.Text = titletxt
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.TextSize = 17
+    
+    message.BackgroundColor3 = Color3.new(0, 0, 0)
+    message.BackgroundTransparency = 1
+    message.Position = UDim2.new(0, 0, 0, 30)
+    message.Size = UDim2.new(1, 0, 1, -30)
+    message.Font = Enum.Font.Gotham
+    message.Text = text
+    message.TextColor3 = Color3.new(1, 1, 1)
+    message.TextSize = 12
+
+    
+    Main:TweenPosition(UDim2.new(1, -400, 0, 520), "Out", "Sine", 0)
+
+ local UserInputService = game:GetService("UserInputService")
+
+    local gui = game.CoreGui.NotificationOof.MainFrame
+
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    local function update(input)
+    	local delta = input.Position - dragStart
+    	gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+
+    gui.InputBegan:Connect(function(input)
+    	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+    		dragging = true
+    		dragStart = input.Position
+    		startPos = gui.Position
+    		
+    		input.Changed:Connect(function()
+    			if input.UserInputState == Enum.UserInputState.End then
+    				dragging = false
+    			end
+    		end)
+    	end
+    end)
+
+    gui.InputChanged:Connect(function(input)
+    	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+    		dragInput = input
+    	end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+    	if input == dragInput and dragging then
+    		update(input)
+    	end
+    end)
+
+  
+    
+end
+
+function getWeaponString()
+    
+    bestStr = ""
+    goodStr= ""
+    basicStr= ""
+    miscStr= ""
+    str = "2"
+    numLines = 50
+    numLines = numLines + 1
+    
+    for i, player in pairs(game.Players:GetChildren()) do 
+    					
+    	bp = player.Backpack
+    	workspacePlayer = game.Workspace:FindFirstChild(player.Name)
+    	
+    	if workspacePlayer ~= nil then
+        
+        	if bp:FindFirstChild("Best Sword") or workspacePlayer:FindFirstChild("Best Sword") then
+        		bestStr = bestStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Best Sword!\n\n"
+        		numLines = numLines + 1
+        	end    
+        	if bp:FindFirstChild("Rocket") or workspacePlayer:FindFirstChild("Rocket") then
+        		bestStr = bestStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Rocket Launcher!\n\n"
+        		numLines = numLines + 1
+        	end     
+        	if bp:FindFirstChild("Gun") or workspacePlayer:FindFirstChild("Gun") then
+        		bestStr = bestStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Gun!\n\n"
+        		numLines = numLines + 1
+        	   end  
+        	if bp:FindFirstChild("Good Sword") or workspacePlayer:FindFirstChild("Good Sword") then
+        		goodStr = goodStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Good Sword\n\n"
+        		numLines = numLines + 1
+        	   end  
+        	if bp:FindFirstChild("Basic Sword") or workspacePlayer:FindFirstChild("Basic Sword") then
+        		basicStr = basicStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Basic Sword\n\n"
+        		numLines = numLines + 1
+        		end 
+        	if bp:FindFirstChild("Musket") or workspacePlayer:FindFirstChild("Musket") then
+        		goodStr = goodStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Musket\n\n"
+        		numLines = numLines + 1
+        	   end  
+        	if bp:FindFirstChild("Sword") or workspacePlayer:FindFirstChild("Sword") then
+        		miscStr = miscStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Barbarian Sword\n\n"
+        		numLines = numLines + 1
+        		end 
+        	if bp:FindFirstChild("Bow") or workspacePlayer:FindFirstChild("Bow") then
+        		miscStr = miscStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Bow\n\n"
+        		numLines = numLines + 1
+        		end 
+        	if bp:FindFirstChild("Bomb") or workspacePlayer:FindFirstChild("Bomb") then
+        		miscStr = miscStr .. player.Name .. " (" .. tostring(player.Team) .. ") " .. "has a Bomb\n\n"
+        		numLines = numLines + 1
+        	end
+        end
+    
+    end
+    finalStr = bestStr .. "\n\n" .. goodStr .. "\n\n" .. basicStr .. "\n\n" .. miscStr .. "\n\n"
+    return finalStr
+end
+
+-- Setup Autofarm function 
+
+function setUpCarAutofarm(bla)
+        
+            
+        if bla ~= false then
+            
+            finishedSetUp = false
+            
+            if game.Players.LocalPlayer.stats.Hunger.Value < 25 then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                
+                repeat          
+                    wait(2) 
+                    game.ReplicatedStorage.RemoteEvent:FireServer("Respawn")
+                until game.Players.LocalPlayer.Character.Humanoid.Health > 0
+            end
+        
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart", 30)
+            
+            
+            workPlr = game.Workspace[game.Players.LocalPlayer.Name]
+            plr1 = game.Players.LocalPlayer.Character
+            
+            if game.Players.LocalPlayer.Team == game:GetService("Teams").Spectating then
+               fireproximityprompt(game:GetService("Workspace").SpawnArea.PeasantSpawnArea.PeasantTP.ProximityPrompt, 1)
+            end
+            
+            for i,v in pairs(game.Workspace.Ragdolls:GetChildren()) do
+                if v:IsA("Model") then 
+                    v:Destroy()
+                end
+            end
+            
+            game.Players.LocalPlayer.Character.Humanoid.Sit = false
+           
+            
+            plr1.Humanoid:UnequipTools()
+            wait()
+            canRunFarm()
+            
+            if floodActive == true then
+                plr1.HumanoidRootPart.CFrame = CFrame.new(335, 36, -133)
+                repeat wait(0.5) canRunFarm() until floodActive == false 
+            end
+            
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Kart") == nil then
+                repeat
+            	wait(0.5)
+            	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(403.231384, 0.760007024, -128.842789)
+                until plr1.Humanoid:GetState() == Enum.HumanoidStateType.Seated
+        	    
+            	Notify("Autofarm", "Setting up. Please wait...\nNote: It's HIGHLY recommended you use this \non a VIP server!\n(Faster cash, less chance of ban)", 6.5)
+            end
+            
+           
+            
+        	plr1.HumanoidRootPart.CFrame = CFrame.new(335, 36, -133)
+        	
+        	
+        	plr1.Humanoid:UnequipTools()
+        	wait(1)
+        	kartTool = game.Players.LocalPlayer.Backpack["Kart"]
+        	game.Players.LocalPlayer.Character.Humanoid:EquipTool(kartTool)
+        	
+        	
+        	repeat
+            	kartTool:Activate()
+            	
+            	wait(2)
+            	daSeat = game.Workspace.Karts[game.Players.LocalPlayer.Name].VehicleSeat
+                plr1.HumanoidRootPart.CFrame = CFrame.new(daSeat.Position.x, daSeat.Position.y + 17, daSeat.Position.z)
+                wait(1)
+                
+                if plr1.Humanoid:GetState() ~= Enum.HumanoidStateType.Seated then
+                    plr1.HumanoidRootPart.CFrame = CFrame.new(335, 36, -133)
+                    wait(0.5)
+                end
+            
+            until plr1.Humanoid:GetState() == Enum.HumanoidStateType.Seated 
+                
+              
+            
+            seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
+            vehicleModel = seat.Parent
+            
+        
+            
+            
+            wait(0.1)
+            
+           
+        
+           
+            
+            wait(1)
+            if plr1.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+                finishedSetUp = true
+            else
+                finishedSetUp = false
+            end
+            plr1.Humanoid:UnequipTools()
+            return finishedSetUp
+    else
+        finishedSetUp = false
+        return finishedSetUp
+    end
+    
+end
+
+function teleportVehicle(vehicleModel, location)
+    vehicleModel:SetPrimaryPartCFrame(location)
+end
+
+-- Autofarm function 
+function carAutofarm(time)
+    
+
+    
+    
+    local seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
+    local vehicleModel = seat.Parent
+    
+    
+    
+    repeat
+        if vehicleModel.ClassName ~= "Model" then
+        	vehicleModel = vehicleModel.Parent
+        end
+    until vehicleModel.ClassName == "Model"
+    
+    canRunFarm()
+    
+        
+        --if notSeated == false and floodActive == false and isDead == false then
+                wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["1"], 0)
+
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["1"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["2"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["2"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["3"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["3"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["4"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["4"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["5"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["5"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["6"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["6"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["7"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["7"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["8"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["8"], 1)
+        end
+        wait(time)
+        if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["9"], 0)
+    
+            firetouchinterest(game.Workspace.Karts[game.Players.LocalPlayer.Name].Root, game.Workspace.KartTrack.Nodes.NodeParts["9"], 1)
+        end
+        
+
+        
+        
+        
+    
+    
+    return finishedSetUp
+end
+
+function canRunFarm()
+    
+    function canRunFarm()
+    
+    floodActive = false
+    notSeated = false
+    isDead = false
+    kartExists = false
+    
+    if game.ReplicatedStorage.IsFlooding.Value == true then
+        floodActive = true
+
+    end
+    
+    if game.Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Seated then
+        notSeated = true
+    end
+    
+    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+        isDead = true
+    end
+    
+    if game.Workspace.Karts:FindFirstChild(game.Players.LocalPlayer.Name) then
+        kartExists = true
+    end
+    
+    return floodActive, notSeated, isDead, kartExists
+    
+end
+    
+    
+    
+end
+
+-- UI here we are!
+local Finity = loadstring(game:HttpGet("https://raw.githubusercontent.com/Boardbot/grg/main/ui.lua"))()
+
+
+
+-- Create Window
+local FinityWindow = Finity.new(true)
+FinityWindow.ChangeToggleKey(Enum.KeyCode.RightControl)
+
+-- Create categories
+local PlayerCategory = FinityWindow:Category("Player")
+local FunctionsCategory = FinityWindow:Category("Functions")
+local AutofarmCategory = FinityWindow:Category("Autofarm")
+local TeamSpecificCategory = FinityWindow:Category("Team-Specific")
+local TeleportsCategory = FinityWindow:Category("Teleports")
+local CreditsCategory = FinityWindow:Category("Credits & Info")
+
+
+
+-- Create sectors for categories
+
+-- PlayerCategory Sectors
+local SpeedSettings = PlayerCategory:Sector("Speed Settings")
+local miscPlayer = PlayerCategory:Sector("Miscellaneous")
+local ServerHop = PlayerCategory:Sector("Serverhop")
+local MiscSector = PlayerCategory:Sector("")
+
+local fillCategory = PlayerCategory:Sector("")
+local DiscordSector = PlayerCategory:Sector("")
+
+-- FunctionsCategory Sectors
+local SelectPlayer = FunctionsCategory:Sector("Autokill")
+local ScanWeapons = FunctionsCategory:Sector("Scan for Player Weapons")
+local placeholderFuncSector = FunctionsCategory:Sector("")
+
+
+
+-- TeleportsCategory Sectors
+
+
+--AutofarmCategory Sectors
+
+
+-- CreditsCategory Sectors
+local DiscordCredits = CreditsCategory:Sector("Discord")
+local CreditsCredits = CreditsCategory:Sector("Credits")
+
+-- TeamSpecificCategory Sectors
+
+
+
+
+
+
+
+
+-- Discord
+
+
+-- FunctionsCategory Category
+
+-- Select Player Textbox
+SelectPlayer:Cheat("Textbox", "Player to Kill", function(killPlrText)
+	playerToKill = GetPlayer(killPlrText).Name
+	
+end, {
+	placeholder = "Enter Player Name"
+})
+
+-- Kill Height Slider 
+SelectPlayer:Cheat("Slider", "Kill Height", function(h)
+	killHeight = h
+end, {min = -12, max = 0, suffix = " studs"})
+
+predIntensity = 0.1
+
+SelectPlayer:Cheat("Slider", "Prediction Intensity", function(pred)
+	predIntensity = (pred / 100) / 2
+end, {min = 0.1, max = 100, suffix = " %"})
+
+SelectPlayer:Cheat("Label", "Adjust the prediction intensity to\nincrease autokill effectiveness")
+
+
+SelectPlayer:Cheat("Dropdown", "Sword to Use", function(Option)
+    
+    
+	if Option == "Autoselect Sword" then
+	    swordToUse = "Autoselect"
+	elseif Option == "Barbarian Sword" then
+	    if game.Players.LocalPlayer.Backpack:FindFirstChild("Sword") then
+    		swordToUse = game.Players.LocalPlayer.Backpack["Sword"]
+    	elseif workPlr:FindFirstChild("Sword") then 
+    		swordToUse = workPlr["Sword"]
+    	else Notify("Autokill", "You do not have this sword!", 5)
+    	end 
+	elseif Option == "Guard Sword" then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Guard Sword") then
+    		swordToUse = game.Players.LocalPlayer.Backpack["Guard Sword"]
+    	elseif workPlr:FindFirstChild("Guard Sword") then 
+    		swordToUse = workPlr["Guard Sword"]
+    	else Notify("Autokill", "You do not have this sword!", 5)
+    	end
+	elseif Option == "Best Sword" then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Best Sword") then
+    		swordToUse = game.Players.LocalPlayer.Backpack["Best Sword"]
+    	elseif workPlr:FindFirstChild("Best Sword") then 
+    		swordToUse = workPlr["Best Sword"]
+    	else Notify("Autokill", "You do not have this sword!", 5)
+    	end
+	elseif Option == "Good Sword" then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Good Sword") then
+    		swordToUse = game.Players.LocalPlayer.Backpack["Good Sword"]
+    	elseif workPlr:FindFirstChild("Good Sword") then 
+    		swordToUse = workPlr["Good Sword"]
+    	else Notify("Autokill", "You do not have this sword!", 5)
+    	end
+	elseif Option == "Basic Sword" then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Basic Sword") then
+    		swordToUse = game.Players.LocalPlayer.Backpack["Basic Sword"]
+    	elseif workPlr:FindFirstChild("Basic Sword") then 
+    		swordToUse = workPlr["Basic Sword"]
+    	else Notify("Autokill", "You do not have this sword!", 5)
+    	end
+    end
+	    
+end, {
+	options = {
+		"Autoselect Sword",
+    	"Barbarian Sword",
+    	"Guard Sword",
+    	"Best Sword",
+    	"Good Sword",
+    	"Basic Sword"
+	}
+})
+
+
+
+SelectPlayer:Cheat("Button", "", function()
+	killPlayer(playerToKill, swordToUse)
+end, "Kill Selected Player")
+
+
+SelectPlayer:Cheat("Label", "")
+SelectPlayer:Cheat("Label", "Kill all players in chosen team")
+
+
+
+
+bruhMomento = nil
+
+ScanWeapons:Cheat(
+	"Checkbox", -- Type
+	"Scan Enabled", -- Name
+	function(scanEnabled) -- Callback function
+	    bruhMomento = scanEnabled
+	   if scanEnabled == true then
+    	   getWeaponString()
+    	   WeaponsGUI("Player Weapon Scan", finalStr)
+	   elseif scanEnabled == false then
+	       game.CoreGui.NotificationOof:Destroy()
+	   end
+end)
+
+ScanWeapons:Cheat("Button", "", function()
+    if bruhMomento == true then
+        game.CoreGui.NotificationOof:Destroy()
+    	getWeaponString()
+        WeaponsGUI("Player Weapon Scan", finalStr)
+    end
+end, "Refresh Scan")
+
+miscPlayer:Cheat("Textbox", "Select Player", function(selectedPlayerTextbox)
+    
+    selectedPlayer1 = GetPlayer(selectedPlayerTextbox)    
+    end, {
+	placeholder = "Enter Player Name"
+})
+
+
+--imhere
+miscPlayer:Cheat("Button", "", function()
+    
+    isViewing = not isViewing
+    if isViewing == true then
+        game.Workspace.Camera.CameraSubject = selectedPlayer1.Character.Humanoid
+    else
+        game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+   end
+    
+end, "View / Unview")
+
+
+miscPlayer:Cheat("Button", "", function()
+    
+    plr1 = game.Players.LocalPlayer.Character
+    plr1.HumanoidRootPart.CFrame = CFrame.new(selectedPlayer1.Character.HumanoidRootPart.Position)
+	
+    
+end, "Teleport to Player")
+
+miscPlayer:Cheat("Label", "")
+
+miscPlayer:Cheat("Button", "", function()
+	game.Workspace.Gate.Door:Destroy()
+	game.Workspace.Gate.Exit:Destroy()
+end, "Remove Gate")
+
+miscPlayer:Cheat("Button", "", function()
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
+	wait(0.01)
+	
+	game.ReplicatedStorage.RemoteEvent:FireServer("Respawn")
+	wait(0.49)    
+	game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+	
+	noclip = false
+	game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end, "Instant Respawn")
+
+
+
+
+--this isnt close to being finished lol
+
+
+-- Shops
+
+
+
+-- Serverhopping
+
+settin = nil
+
+
+
+	
+		
+	
+
+
+
+
+
+farmtime = 9.6
+Autofarm1:Cheat("Slider", "Autofarm Speed", function(laTime)
+	farmTime = 1 / laTime
+end, {min = 3.2, max = 16, suffix = " nodes / sec"})
+
+Autofarm1:Cheat("Label", "Recommended Autofarm Speed: 9.4 - 9.8")
+Autofarm2:Cheat("Label", "")
+Autofarm2:Cheat("Label", "The autofarm is ping-dependent, so speeds above 9\nmay not register for some users.\n\nPlay around with the speed\nto see what works best.")
+
+Autofarm2:Cheat("Label", "")
+Autofarm2:Cheat("Label", "\n\n\nHighly recommended to use on VIP servers.\nVIP servers are FREE.")
+Autofarm2:Cheat("Label", "")
+--[[Autofarm2:Cheat("Label", "\n\n\n\nJoin the Discord!")
+
+Autofarm2:Cheat("Button", "", function()
+    setclipboard("discord.gg/BgaWVXUduZ")
+end, "Copy Discord Invite")
+]]
+
+
+-- Credits category
+DiscordCredits:Cheat("Label", "\nBugs? Issues? Want to see the changelog?\nWant to contact me? Add me on Discord!\nConsuming#1969")
+DiscordCredits:Cheat("Label", "")
+--[[DiscordCredits:Cheat("Button", "", function()
+    setclipboard("discord.gg/BgaWVXUduZ")
+end, "Copy Discord Invite")
+]]
+CreditsCredits:Cheat("Label", "")
+CreditsCredits:Cheat("Label", "")
+CreditsCredits:Cheat("Label", "Contact me on Discord: Consuming#1969")
+
+
+
+
+
+
+game.Workspace.CouncilHouse.COUNCILONLY:Destroy()
+game.Workspace.LeaderTower.LEADERONLY:Destroy()
