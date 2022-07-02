@@ -6,7 +6,7 @@
 
 
 
-if game.CoreGui:FindFirstChild("GAHshasve1621DVseyswebscasf") then
+if game.CoreGui:FindFirstChild("Uwedcfsdgxvxbvbmrwq") then
 	print("Already Injected")
 else
 
@@ -92,7 +92,7 @@ local ActivatedBar_2 = Instance.new("Frame")
 
 --Properties:
 
-ConsumerHubBunkerHillv12.Name = "GAHshasve1621DVseyswebscasf"
+ConsumerHubBunkerHillv12.Name = "Uwedcfsdgxvxbvbmrwq"
 	ConsumerHubBunkerHillv12.Parent = game:WaitForChild("CoreGui")
 ConsumerHubBunkerHillv12.DisplayOrder = 999999999
 
