@@ -6,7 +6,7 @@
 
 
 
-if game.CoreGui:FindFirstChild("Uwedcfsdgxvxbvbmrwq") then
+if game.CoreGui:FindFirstChild("sY3262dcxRIPBOXO") then
 	print("Already Injected")
 else
 
