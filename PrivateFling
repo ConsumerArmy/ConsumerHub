@@ -49,7 +49,7 @@ local Title = Instance.new("TextLabel")
 local TextBox = Instance.new("TextBox")
 local TextButton = Instance.new("TextButton")
 
-h.Name = "h"
+h.Name = "SAG62hgdjhjdasvfsdv"
 h.Parent = game:GetService("CoreGui")
 h.ResetOnSpawn = false
 
