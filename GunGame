@@ -1,0 +1,42 @@
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Notification";
+    Text = "ConsumerHub Executed";})
+Duration = 10;
+
+
+
+    local Plr = game:GetService("Players").LocalPlayer
+local Mouse = Plr:GetMouse()
+
+    Mouse.Button1Down:connect(function()
+            if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.G) then
+                return
+            end
+            if not Mouse.Target then
+                return
+            end
+            print("Deleted", Mouse.Target)
+            Mouse.Target:Destroy()
+        end)
+
+
+
+local waterTP = Instance.new("Part")
+waterTP.Anchored = true
+waterTP.CanCollide = true
+waterTP.Position = Vector3.new(0, 6.50, 0)
+waterTP.Size = Vector3.new(404, 10, 404)
+waterTP.BrickColor = BrickColor.new("Royal purple")
+waterTP.Transparency = 1
+waterTP.Parent = workspace
+
+local function TPSPAWN() 
+    local script = Instance.new('LocalScript', waterTP)
+    
+script.Parent.Touched:Connect(function(plr)
+local workspacePLAYER = workspace:FindFirstChild(Plr.Name)
+workspacePLAYER.HumanoidRootPart.CFrame = CFrame.new(-4.21170998, 27.5, 7.75961018, 0.999734581, 5.03422761e-08, -0.023039123, -4.97780022e-08, 1, 2.50654466e-08, 0.023039123, -2.39119515e-08, 0.999734581) 
+end)
+
+end
+coroutine.wrap(TPSPAWN)()
