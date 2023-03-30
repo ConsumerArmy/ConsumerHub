@@ -1,572 +1,143 @@
--- Gui to Lua
--- Version: 3.2
-if game.CoreGui:FindFirstChild("ConsumerHubBunkerHill") then
+
+if game.CoreGui:FindFirstChild("Login") then
 	print("Already Injected")
 else
 
--- Instances:
-	
-	
-
-	local Plr = game:GetService("Players").LocalPlayer
-	local Mouse = Plr:GetMouse()
-
-	Mouse.Button1Down:connect(function()
-			if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.Q) then
-				return
-			end
-			if not Mouse.Target then
-				return
-			end
-			Mouse.Target:Destroy()
-		end
-	)
-
-
-	
-	
-local ConsumerHubBunkerHill = Instance.new("ScreenGui")
-local MAIN = Instance.new("ImageLabel")
+local Login = Instance.new("ScreenGui")
+local Drag = Instance.new("Frame")
+local MainFrame = Instance.new("ImageLabel")
+local PurpleBar = Instance.new("Frame")
 local Tittle = Instance.new("Frame")
 local Name = Instance.new("TextLabel")
-local PurpleBar = Instance.new("Frame")
-local BunkerHillFrame = Instance.new("Frame")
-local BunkerHillMain = Instance.new("Frame")
-local Name_2 = Instance.new("TextLabel")
-local PurpleBar_2 = Instance.new("Frame")
-local PurpleBar_3 = Instance.new("Frame")
-local Tptool = Instance.new("TextButton")
-local RemoveJail = Instance.new("TextButton")
-local InfAmmo = Instance.new("TextButton")
-local LagSwitch = Instance.new("TextButton")
-local soon = Instance.new("TextButton")
-local InfYield = Instance.new("TextButton")
-local OtherFrame = Instance.new("Frame")
-local Name_3 = Instance.new("TextLabel")
-local PurpleBar_4 = Instance.new("Frame")
-local PurpleBar_5 = Instance.new("Frame")
-local NoJumpDelay = Instance.new("TextButton")
-local OfficerSaber = Instance.new("TextButton")
-local ApplyStuds = Instance.new("TextButton")
-local StudsBox = Instance.new("TextBox")
-local TpsFrame = Instance.new("Frame")
-local Name_4 = Instance.new("TextLabel")
-local PurpleBar_6 = Instance.new("Frame")
-local PurpleBar_7 = Instance.new("Frame")
-local BaDown = Instance.new("TextButton")
-local BaUp = Instance.new("TextButton")
-local CaSpawn = Instance.new("TextButton")
-local Church = Instance.new("TextButton")
+local LoginConfirm = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local Enter = Instance.new("TextBox")
+local Success = Instance.new("ImageLabel")
+local TextO = Instance.new("TextLabel")
 
 --Properties:
 
-ConsumerHubBunkerHill.Name = "ConsumerHubBunkerHill"
-	ConsumerHubBunkerHill.Parent = game:WaitForChild("CoreGui")
-ConsumerHubBunkerHill.DisplayOrder = 999999999
+Login.Name = "Login"
+	Login.Parent = game:WaitForChild("CoreGui")
+Login.DisplayOrder = 99999999
 
-MAIN.Name = "MAIN"
-MAIN.Parent = ConsumerHubBunkerHill
-MAIN.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-MAIN.BorderColor3 = Color3.fromRGB(84, 84, 84)
-MAIN.BorderSizePixel = 3
-MAIN.Position = UDim2.new(0.0300686061, 0, 0.0925232172, 0)
-MAIN.Size = UDim2.new(0.25, 0, 0.600000024, 0)
-MAIN.Image = "rbxassetid://5553946656"
-MAIN.ImageColor3 = Color3.fromRGB(0, 0, 0)
-MAIN.ScaleType = Enum.ScaleType.Tile
-MAIN.TileSize = UDim2.new(0.300000012, 0, 0.300000012, 0)
+Drag.Name = "Drag"
+Drag.Parent = Login
+Drag.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Drag.BackgroundTransparency = 1.000
+Drag.Position = UDim2.new(0.37141031, 0, 0.324717283, 0)
+Drag.Size = UDim2.new(0.257000029, 0, 0.349000007, 0)
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = Drag
+MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+MainFrame.BorderColor3 = Color3.fromRGB(84, 84, 84)
+MainFrame.BorderSizePixel = 3
+MainFrame.Size = UDim2.new(1, 0, 1, 0)
+MainFrame.Image = "rbxassetid://5553946656"
+MainFrame.ImageColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.ScaleType = Enum.ScaleType.Tile
+MainFrame.TileSize = UDim2.new(0.300000012, 0, 0.300000012, 0)
+
+PurpleBar.Name = "PurpleBar"
+PurpleBar.Parent = MainFrame
+PurpleBar.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
+PurpleBar.Position = UDim2.new(0, 0, 0.167072266, 0)
+PurpleBar.Size = UDim2.new(1, 0, 0.00916039292, 0)
+PurpleBar.ZIndex = 11
 
 Tittle.Name = "Tittle"
-Tittle.Parent = MAIN
+Tittle.Parent = MainFrame
 Tittle.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
 Tittle.BackgroundTransparency = 0.100
-Tittle.Position = UDim2.new(0, 0, -1.54129172e-08, 0)
-Tittle.Size = UDim2.new(1, 0, 0.0606060885, 0)
+Tittle.Size = UDim2.new(1, 0, 0.167072356, 0)
 
 Name.Name = "Name"
 Name.Parent = Tittle
 Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Name.BackgroundTransparency = 1.000
-Name.Size = UDim2.new(0.478181809, 0, 1.00000012, 0)
+Name.Position = UDim2.new(0.0173818469, 0, 0.0277063511, 0)
+Name.Size = UDim2.new(0.960270226, 0, 1.00000012, 0)
 Name.Font = Enum.Font.Nunito
-Name.Text = "ConsumerHub V1"
+Name.Text = "ConsumerHub V1.0                  [Login]"
 Name.TextColor3 = Color3.fromRGB(234, 234, 234)
 Name.TextScaled = true
 Name.TextSize = 14.000
 Name.TextWrapped = true
 
-PurpleBar.Name = "PurpleBar"
-PurpleBar.Parent = MAIN
-PurpleBar.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar.Position = UDim2.new(0, 0, 0.0606060401, 0)
-PurpleBar.Size = UDim2.new(1, 0, 0.00499999989, 0)
+LoginConfirm.Name = "LoginConfirm"
+LoginConfirm.Parent = MainFrame
+LoginConfirm.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LoginConfirm.BorderColor3 = Color3.fromRGB(60, 60, 60)
+LoginConfirm.BorderSizePixel = 2
+LoginConfirm.Position = UDim2.new(0.290438771, 0, 0.642479837, 0)
+LoginConfirm.Size = UDim2.new(0.419100523, 0, 0.248155609, 0)
+LoginConfirm.ZIndex = 4
+LoginConfirm.Font = Enum.Font.SourceSans
+LoginConfirm.Text = "Login"
+LoginConfirm.TextColor3 = Color3.fromRGB(209, 209, 209)
+LoginConfirm.TextScaled = true
+LoginConfirm.TextSize = 14.000
+LoginConfirm.TextWrapped = true
 
-BunkerHillFrame.Name = "BunkerHillFrame"
-BunkerHillFrame.Parent = MAIN
-BunkerHillFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-BunkerHillFrame.BackgroundTransparency = 1.000
-BunkerHillFrame.Position = UDim2.new(0, 0, 0.0656060502, 0)
-BunkerHillFrame.Size = UDim2.new(1, 0, 0.934394002, 0)
+UICorner.Parent = LoginConfirm
 
-BunkerHillMain.Name = "BunkerHillMain"
-BunkerHillMain.Parent = BunkerHillFrame
-BunkerHillMain.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-BunkerHillMain.BorderColor3 = Color3.fromRGB(60, 60, 60)
-BunkerHillMain.BorderSizePixel = 0
-BunkerHillMain.Position = UDim2.new(0.0458003916, 0, 0.0819523633, 0)
-BunkerHillMain.Size = UDim2.new(0.470474303, 0, 0.760285914, 0)
+Enter.Name = "Enter"
+Enter.Parent = MainFrame
+Enter.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Enter.BorderColor3 = Color3.fromRGB(60, 60, 60)
+Enter.BorderSizePixel = 4
+Enter.Position = UDim2.new(0.0912275687, 0, 0.324091434, 0)
+Enter.Size = UDim2.new(0.817892611, 0, 0.248033881, 0)
+Enter.ZIndex = 3
+Enter.Font = Enum.Font.SourceSans
+Enter.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+Enter.PlaceholderText = "Enter Key Here"
+Enter.Text = ""
+Enter.TextColor3 = Color3.fromRGB(234, 234, 234)
+Enter.TextScaled = true
+Enter.TextSize = 14.000
+Enter.TextWrapped = true
 
-Name_2.Name = "Name"
-Name_2.Parent = BunkerHillMain
-Name_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_2.BackgroundTransparency = 1.000
-Name_2.Position = UDim2.new(0.146858826, 0, -0.0374713205, 0)
-Name_2.Size = UDim2.new(0.722017944, 0, 0.0840348527, 0)
-Name_2.ZIndex = 3
-Name_2.Font = Enum.Font.Nunito
-Name_2.Text = "Bunger Hill"
-Name_2.TextColor3 = Color3.fromRGB(234, 234, 234)
-Name_2.TextScaled = true
-Name_2.TextSize = 14.000
-Name_2.TextWrapped = true
+Success.Name = "Success"
+Success.Parent = Drag
+Success.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Success.BorderColor3 = Color3.fromRGB(84, 84, 84)
+Success.BorderSizePixel = 3
+Success.Position = UDim2.new(0, 0, 0.176232651, 0)
+Success.Size = UDim2.new(1, 0, 0.823767304, 0)
+Success.Visible = false
+Success.ZIndex = 10
+Success.Image = "rbxassetid://5553946656"
+Success.ImageColor3 = Color3.fromRGB(0, 0, 0)
+Success.ScaleType = Enum.ScaleType.Tile
+Success.TileSize = UDim2.new(0.300000012, 0, 0.300000012, 0)
 
-PurpleBar_2.Name = "PurpleBar"
-PurpleBar_2.Parent = BunkerHillMain
-PurpleBar_2.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_2.Size = UDim2.new(0.26121372, 0, 0.00999999978, 0)
-
-PurpleBar_3.Name = "PurpleBar"
-PurpleBar_3.Parent = BunkerHillMain
-PurpleBar_3.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_3.Position = UDim2.new(0.733509243, 0, 0, 0)
-PurpleBar_3.Size = UDim2.new(0.266490757, 0, 0.00999999978, 0)
-
-Tptool.Name = "Tptool"
-Tptool.Parent = BunkerHillMain
-Tptool.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Tptool.BorderColor3 = Color3.fromRGB(86, 86, 86)
-Tptool.Position = UDim2.new(0.0774663016, 0, 0.0730230138, 0)
-Tptool.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-Tptool.Font = Enum.Font.Nunito
-Tptool.Text = "Tp Tool"
-Tptool.TextColor3 = Color3.fromRGB(234, 234, 234)
-Tptool.TextScaled = true
-Tptool.TextSize = 14.000
-Tptool.TextWrapped = true
-
-RemoveJail.Name = "RemoveJail"
-RemoveJail.Parent = BunkerHillMain
-RemoveJail.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-RemoveJail.BorderColor3 = Color3.fromRGB(86, 86, 86)
-RemoveJail.Position = UDim2.new(0.0771204606, 0, 0.213678122, 0)
-RemoveJail.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-RemoveJail.Font = Enum.Font.Nunito
-RemoveJail.Text = "Remove Jail Timeout"
-RemoveJail.TextColor3 = Color3.fromRGB(234, 234, 234)
-RemoveJail.TextScaled = true
-RemoveJail.TextSize = 14.000
-RemoveJail.TextWrapped = true
-
-InfAmmo.Name = "InfAmmo"
-InfAmmo.Parent = BunkerHillMain
-InfAmmo.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-InfAmmo.BorderColor3 = Color3.fromRGB(86, 86, 86)
-InfAmmo.Position = UDim2.new(0.0636155382, 0, 0.351834059, 0)
-InfAmmo.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-InfAmmo.Font = Enum.Font.Nunito
-InfAmmo.Text = "Infinite Ammo"
-InfAmmo.TextColor3 = Color3.fromRGB(234, 234, 234)
-InfAmmo.TextScaled = true
-InfAmmo.TextSize = 14.000
-InfAmmo.TextWrapped = true
-
-LagSwitch.Name = "LagSwitch"
-LagSwitch.Parent = BunkerHillMain
-LagSwitch.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-LagSwitch.BorderColor3 = Color3.fromRGB(86, 86, 86)
-LagSwitch.Position = UDim2.new(0.07288941, 0, 0.507188559, 0)
-LagSwitch.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-LagSwitch.Font = Enum.Font.Nunito
-LagSwitch.Text = "Lag Switch (X)"
-LagSwitch.TextColor3 = Color3.fromRGB(234, 234, 234)
-LagSwitch.TextScaled = true
-LagSwitch.TextSize = 14.000
-LagSwitch.TextWrapped = true
-
-soon.Name = "soon"
-soon.Parent = BunkerHillMain
-soon.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-soon.BorderColor3 = Color3.fromRGB(86, 86, 86)
-soon.Position = UDim2.new(0.0728894174, 0, 0.815951705, 0)
-soon.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-soon.Font = Enum.Font.Nunito
-soon.Text = "Coming soon..."
-soon.TextColor3 = Color3.fromRGB(234, 234, 234)
-soon.TextScaled = true
-soon.TextSize = 14.000
-soon.TextWrapped = true
-
-InfYield.Name = "InfYield"
-InfYield.Parent = BunkerHillMain
-InfYield.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-InfYield.BorderColor3 = Color3.fromRGB(86, 86, 86)
-InfYield.Position = UDim2.new(0.0636155456, 0, 0.658651114, 0)
-InfYield.Size = UDim2.new(0.842999995, 0, 0.0930000022, 0)
-InfYield.Font = Enum.Font.Nunito
-InfYield.Text = "inf Yield"
-InfYield.TextColor3 = Color3.fromRGB(234, 234, 234)
-InfYield.TextScaled = true
-InfYield.TextSize = 14.000
-InfYield.TextWrapped = true
-
-OtherFrame.Name = "OtherFrame"
-OtherFrame.Parent = BunkerHillFrame
-OtherFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-OtherFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
-OtherFrame.BorderSizePixel = 0
-OtherFrame.Position = UDim2.new(0.568935156, 0, 0.582092941, 0)
-OtherFrame.Size = UDim2.new(0.359431744, 0, 0.339335263, 0)
-
-Name_3.Name = "Name"
-Name_3.Parent = OtherFrame
-Name_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_3.BackgroundTransparency = 1.000
-Name_3.Position = UDim2.new(0.144172058, 0, -0.0652448386, 0)
-Name_3.Size = UDim2.new(0.714506209, 0, 0.134596989, 0)
-Name_3.ZIndex = 3
-Name_3.Font = Enum.Font.Nunito
-Name_3.Text = "Other"
-Name_3.TextColor3 = Color3.fromRGB(234, 234, 234)
-Name_3.TextScaled = true
-Name_3.TextSize = 14.000
-Name_3.TextWrapped = true
-
-PurpleBar_4.Name = "PurpleBar"
-PurpleBar_4.Parent = OtherFrame
-PurpleBar_4.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_4.Position = UDim2.new(-0.00686531607, 0, -0.00522779673, 0)
-PurpleBar_4.Size = UDim2.new(0.151037291, 0, 0.0160168055, 0)
-
-PurpleBar_5.Name = "PurpleBar"
-PurpleBar_5.Parent = OtherFrame
-PurpleBar_5.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_5.Position = UDim2.new(0.858678281, 0, -0.00522779673, 0)
-PurpleBar_5.Size = UDim2.new(0.134456143, 0, 0.0160168055, 0)
-
-NoJumpDelay.Name = "NoJumpDelay"
-NoJumpDelay.Parent = OtherFrame
-NoJumpDelay.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-NoJumpDelay.BorderColor3 = Color3.fromRGB(86, 86, 86)
-NoJumpDelay.Position = UDim2.new(0.0706008151, 0, 0.131716833, 0)
-NoJumpDelay.Size = UDim2.new(0.843000054, 0, 0.147292241, 0)
-NoJumpDelay.Font = Enum.Font.Nunito
-NoJumpDelay.Text = "No jump delay"
-NoJumpDelay.TextColor3 = Color3.fromRGB(234, 234, 234)
-NoJumpDelay.TextScaled = true
-NoJumpDelay.TextSize = 14.000
-NoJumpDelay.TextWrapped = true
-
-OfficerSaber.Name = "OfficerSaber"
-OfficerSaber.Parent = OtherFrame
-OfficerSaber.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-OfficerSaber.BorderColor3 = Color3.fromRGB(86, 86, 86)
-OfficerSaber.Position = UDim2.new(0.0843187273, 0, 0.349823385, 0)
-OfficerSaber.Size = UDim2.new(0.842999995, 0, 0.147, 0)
-OfficerSaber.Font = Enum.Font.Nunito
-OfficerSaber.Text = "Officer Saber"
-OfficerSaber.TextColor3 = Color3.fromRGB(234, 234, 234)
-OfficerSaber.TextScaled = true
-OfficerSaber.TextSize = 14.000
-OfficerSaber.TextWrapped = true
-
-ApplyStuds.Name = "ApplyStuds"
-ApplyStuds.Parent = OtherFrame
-ApplyStuds.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-ApplyStuds.BorderColor3 = Color3.fromRGB(86, 86, 86)
-ApplyStuds.Position = UDim2.new(0.0843187273, 0, 0.760175526, 0)
-ApplyStuds.Size = UDim2.new(0.842999995, 0, 0.147, 0)
-ApplyStuds.Font = Enum.Font.Nunito
-ApplyStuds.Text = "Apply"
-ApplyStuds.TextColor3 = Color3.fromRGB(234, 234, 234)
-ApplyStuds.TextScaled = true
-ApplyStuds.TextSize = 14.000
-ApplyStuds.TextWrapped = true
-
-StudsBox.Name = "StudsBox"
-StudsBox.Parent = OtherFrame
-StudsBox.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-StudsBox.BorderColor3 = Color3.fromRGB(86, 86, 86)
-StudsBox.Position = UDim2.new(0.082333006, 0, 0.56263721, 0)
-StudsBox.Size = UDim2.new(0.843000054, 0, 0.14452602, 0)
-StudsBox.Font = Enum.Font.SourceSans
-StudsBox.PlaceholderText = "Enter killed studs here"
-StudsBox.Text = ""
-	StudsBox.TextColor3 = Color3.fromRGB(226, 226, 226)
-	StudsBox.TextScaled = true
-StudsBox.TextSize = 14.000
-
-TpsFrame.Name = "TpsFrame"
-TpsFrame.Parent = BunkerHillFrame
-TpsFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-TpsFrame.BorderColor3 = Color3.fromRGB(60, 60, 60)
-TpsFrame.BorderSizePixel = 0
-TpsFrame.Position = UDim2.new(0.56646663, 0, 0.116105855, 0)
-TpsFrame.Size = UDim2.new(0.359431744, 0, 0.432166576, 0)
-
-Name_4.Name = "Name"
-Name_4.Parent = TpsFrame
-Name_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name_4.BackgroundTransparency = 1.000
-Name_4.Position = UDim2.new(0.144172058, 0, -0.0652448386, 0)
-Name_4.Size = UDim2.new(0.714506209, 0, 0.134596989, 0)
-Name_4.ZIndex = 3
-Name_4.Font = Enum.Font.Nunito
-Name_4.Text = "Tps"
-Name_4.TextColor3 = Color3.fromRGB(234, 234, 234)
-Name_4.TextScaled = true
-Name_4.TextSize = 14.000
-Name_4.TextWrapped = true
-
-PurpleBar_6.Name = "PurpleBar"
-PurpleBar_6.Parent = TpsFrame
-PurpleBar_6.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_6.Position = UDim2.new(-0.00686531607, 0, -0.00522771012, 0)
-PurpleBar_6.Size = UDim2.new(0.31580478, 0, 0.0160168055, 0)
-
-PurpleBar_7.Name = "PurpleBar"
-PurpleBar_7.Parent = TpsFrame
-PurpleBar_7.BackgroundColor3 = Color3.fromRGB(197, 53, 236)
-PurpleBar_7.Position = UDim2.new(0.659584105, 0, -0.00522771012, 0)
-PurpleBar_7.Size = UDim2.new(0.333550364, 0, 0.0160168055, 0)
-
-BaDown.Name = "BaDown"
-BaDown.Parent = TpsFrame
-BaDown.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-BaDown.BorderColor3 = Color3.fromRGB(86, 86, 86)
-BaDown.Position = UDim2.new(0.0774661079, 0, 0.162774637, 0)
-BaDown.Size = UDim2.new(0.842999995, 0, 0.144007921, 0)
-BaDown.Font = Enum.Font.Nunito
-BaDown.Text = "BA spawn 1"
-BaDown.TextColor3 = Color3.fromRGB(234, 234, 234)
-BaDown.TextScaled = true
-BaDown.TextSize = 14.000
-BaDown.TextWrapped = true
-
-BaUp.Name = "BaUp"
-BaUp.Parent = TpsFrame
-BaUp.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-BaUp.BorderColor3 = Color3.fromRGB(86, 86, 86)
-BaUp.Position = UDim2.new(0.0706007928, 0, 0.363481253, 0)
-BaUp.Size = UDim2.new(0.842999995, 0, 0.144007921, 0)
-BaUp.Font = Enum.Font.Nunito
-BaUp.Text = "BA spawn 2"
-BaUp.TextColor3 = Color3.fromRGB(234, 234, 234)
-BaUp.TextScaled = true
-BaUp.TextSize = 14.000
-BaUp.TextWrapped = true
-
-CaSpawn.Name = "CaSpawn"
-CaSpawn.Parent = TpsFrame
-CaSpawn.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-CaSpawn.BorderColor3 = Color3.fromRGB(86, 86, 86)
-CaSpawn.Position = UDim2.new(0.084331423, 0, 0.577872336, 0)
-CaSpawn.Size = UDim2.new(0.842999995, 0, 0.144007921, 0)
-CaSpawn.Font = Enum.Font.Nunito
-CaSpawn.Text = "CA spawn"
-CaSpawn.TextColor3 = Color3.fromRGB(234, 234, 234)
-CaSpawn.TextScaled = true
-CaSpawn.TextSize = 14.000
-CaSpawn.TextWrapped = true
-
-Church.Name = "Church"
-Church.Parent = TpsFrame
-Church.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Church.BorderColor3 = Color3.fromRGB(86, 86, 86)
-Church.Position = UDim2.new(0.0911967456, 0, 0.781062961, 0)
-Church.Size = UDim2.new(0.842999995, 0, 0.144007921, 0)
-Church.Font = Enum.Font.Nunito
-Church.Text = "Church"
-Church.TextColor3 = Color3.fromRGB(234, 234, 234)
-Church.TextScaled = true
-Church.TextSize = 14.000
-Church.TextWrapped = true
+TextO.Name = "TextO"
+TextO.Parent = Success
+TextO.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextO.BackgroundTransparency = 1.000
+TextO.Position = UDim2.new(0.0173818469, 0, 0.0277063511, 0)
+TextO.Size = UDim2.new(0.960270226, 0, 1.00000012, 0)
+TextO.ZIndex = 11
+TextO.Font = Enum.Font.Nunito
+TextO.Text = "nil"
+TextO.TextColor3 = Color3.fromRGB(234, 234, 234)
+TextO.TextScaled = true
+TextO.TextSize = 14.000
+TextO.TextWrapped = true
 
 -- Scripts:
 
-local function KNCPOOS_fake_script() -- Tptool.LocalScript 
-	local script = Instance.new('LocalScript', Tptool)	
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/Tptool", true))()
-		
-	end)
-end
-coroutine.wrap(KNCPOOS_fake_script)()
-local function AVVCCDI_fake_script() -- RemoveJail.LocalScript 
-	local script = Instance.new('LocalScript', RemoveJail)	
+local function VGJAU_fake_script() -- LoginConfirm.LocalScript 
+	local script = Instance.new('LocalScript', LoginConfirm)
+
+	
 	script.Parent.MouseButton1Click:Connect(function()
-			local playerName = game.Players.LocalPlayer.Name
-			local jail = game.ReplicatedStorage.JailedPeople
-			local JailDestroyer = jail:FindFirstChild(playerName)
-			local WorkSpace = game:GetService("Workspace")
-			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
-
-
-
-			if WorkSpace:FindFirstChild(playerName) then
-
-
-				if jail:FindFirstChild(playerName) then
-
-
-					JailDestroyer:Destroy()
-					if Workspaceplayer:FindFirstChild("Humanoid") then
-						Workspaceplayer.Humanoid.Health = 0
-						
-					end
-				else
-					print("not jailed")
-				end
-			end
-
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/WhiteList'),true))()
 	end)
+end
+	coroutine.wrap(VGJAU_fake_script)()
 	
 	
-	
-end
-coroutine.wrap(AVVCCDI_fake_script)()
-local function XCFI_fake_script() -- InfAmmo.LocalScript 
-	local script = Instance.new('LocalScript', InfAmmo)
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/InfAmmo', true))()
-	end)
-end
-coroutine.wrap(XCFI_fake_script)()
-local function UWDGRD_fake_script() -- LagSwitch.LocalScript 
-	local script = Instance.new('LocalScript', LagSwitch)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		loadstring(game:HttpGet("https://paste.gg/p/anonymous/d3492bd620bd4c46b54680ac80b0fa0d/files/161ddd9c992c4ceba3c298458d45188a/raw", true))()
-	
-	end)
-end
-coroutine.wrap(UWDGRD_fake_script)()
-local function SQSR_fake_script() -- InfYield.LocalScript 
-	local script = Instance.new('LocalScript', InfYield)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
-	end)
-end
-coroutine.wrap(SQSR_fake_script)()
-local function WZDLL_fake_script() -- NoJumpDelay.LocalScript 
-	local script = Instance.new('LocalScript', NoJumpDelay)
-	script.Parent.MouseButton1Click:Connect(function(plr)
-		
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/NoJumpDelay'),true))()
-	end)
-end
-coroutine.wrap(WZDLL_fake_script)()
-local function JWUV_fake_script() -- OfficerSaber.LocalScript 
-	local script = Instance.new('LocalScript', OfficerSaber)
-	script.Parent.MouseButton1Click:Connect(function(plr)
-		
-			local playerName = game.Players.LocalPlayer.Name
-			local WorkSpace = game:GetService("Workspace")
-			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
-
-
-
-			if WorkSpace:FindFirstChild("Sabre Box") then
-
-				local sabre = WorkSpace:FindFirstChild("Sabre Box").TouchPart
-				sabre.Transparency = 0
-				sabre.Size = Vector3.new(2.71422, 1, 2.1)
-				sabre.CFrame = Workspaceplayer.Head.CFrame
-			end
-		
-	end)
-end
-coroutine.wrap(JWUV_fake_script)()
-local function WJAK_fake_script() -- ApplyStuds.LocalScript 
-	local script = Instance.new('LocalScript', ApplyStuds)
-
-
-	
-	script.Parent.MouseButton1Click:Connect(function(plr)
-		
-			local playerName = game.Players.LocalPlayer.Name
-			local WorkSpace = game:GetService("Workspace")
-			local Workspaceplayer = WorkSpace:FindFirstChild(playerName)
-			local textbox = script.Parent.Parent.StudsBox
-				local frame = game.Players.LocalPlayer.PlayerGui.DeathShower.Frame
-			frame.studs.Text = textbox.Text.." Studs"
-
-		
-	end)
-end
-coroutine.wrap(WJAK_fake_script)()
-local function IBHPE_fake_script() -- BaDown.LocalScript 
-	local script = Instance.new('LocalScript', BaDown)
-
-	
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpBASpawn1'),true))()
-		
-	end)
-end
-coroutine.wrap(IBHPE_fake_script)()
-local function CCHR_fake_script() -- BaUp.LocalScript 
-	local script = Instance.new('LocalScript', BaUp)
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpBASpawn2'),true))()
-		
-	end)
-end
-coroutine.wrap(CCHR_fake_script)()
-local function ZTFQFG_fake_script() -- CaSpawn.LocalScript 
-	local script = Instance.new('LocalScript', CaSpawn)
-
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpCaSpawn1'),true))()
-	end)
-end
-coroutine.wrap(ZTFQFG_fake_script)()
-local function SDAUOED_fake_script() -- Church.LocalScript 
-	local script = Instance.new('LocalScript', Church)
-
-	script.Parent.MouseButton1Click:Connect(function(plr)
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHub/main/TpChurch1'),true))()	
-	end)
-end
-coroutine.wrap(SDAUOED_fake_script)()
-local function NXYBDA_fake_script() -- ConsumerHubBunkerHill.OpenClose 
-	local script = Instance.new('LocalScript', ConsumerHubBunkerHill)
-
-	
-	
-	local UserInputService = game:GetService("UserInputService")
-	
-	
-	UserInputService.InputBegan:Connect(function(input, isTyping)
-		
-		if isTyping then
-			
-			return end
-			game:GetService("StarterGui"):SetCore("ResetButtonCallback", true)
-			if input.KeyCode == Enum.KeyCode.LeftAlt then
-				
-			if script.Parent.MAIN.Visible == true then
-					script.Parent.MAIN.Visible = false
-				else if script.Parent.MAIN.Visible == false then
-						script.Parent.MAIN.Visible = true
-					end
-					end
-		end
-		
-	end)
-end
-coroutine.wrap(NXYBDA_fake_script)()
 end
