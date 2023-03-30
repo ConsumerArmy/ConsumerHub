@@ -1,6 +1,7 @@
 
 if game.CoreGui:FindFirstChild("Login") then
 	print("Already Injected")
+	--s
 else
 
 local Login = Instance.new("ScreenGui")
