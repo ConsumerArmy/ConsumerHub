@@ -136,6 +136,8 @@ local function VGJAU_fake_script() -- LoginConfirm.LocalScript
 	
 	script.Parent.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/WhiteList'),true))()
+		print("WORJKS")
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/Trello'),true))()
 	end)
 end
 	coroutine.wrap(VGJAU_fake_script)()
